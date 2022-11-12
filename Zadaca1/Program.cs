@@ -7,7 +7,7 @@ namespace Zadaca1
     {
         static Izbori napuni()
         {
-            //List<Stranka> stranke, List<Kandidat> nezavisniKandidati, List<Glas> glasaci
+            
            Stranka stranka1 = new Stranka("SDA");
            Stranka stranka2 = new Stranka("SDP");
            Stranka stranka3 = new Stranka("NIP");
@@ -22,21 +22,21 @@ namespace Zadaca1
            Kandidat kandidat4_1 = new Kandidat("Mia", "Santic", "7", stranka4);
            Kandidat kandidat4_2 = new Kandidat("Mijo", "Mijic", "8", stranka4);
 
-           stranka1.Kandidati(new List<Kandidat>({ kandidat1_1, kandidat1_2}));
-           stranka2.Kandidati(new List<Kandidat>({ kandidat2_1, kandidat2_2}));
-           stranka3.Kandidati(new List<Kandidat>({ kandidat3_1, kandidat3_2}));
-           stranka4.Kandidati(new List<Kandidat>({ kandidat4_1, kandidat4_2}));
-           List<Stranka> stranke = new List<Stranka>({ stranka1, stranka2, stranka3, stranka4});
-           List<Kandidat> nezavisniKandidati = new List<Kandidat>({ 
+           stranka1.Kandidati = new List<Kandidat>{ kandidat1_1, kandidat1_2};
+           stranka2.Kandidati = new List<Kandidat>{ kandidat2_1, kandidat2_2};
+           stranka3.Kandidati = new List<Kandidat>{ kandidat3_1, kandidat3_2};
+           stranka4.Kandidati = new List<Kandidat>{ kandidat4_1, kandidat4_2};
+           List<Stranka> stranke = new List<Stranka>{ stranka1, stranka2, stranka3, stranka4};
+           List<Kandidat> nezavisniKandidati = new List<Kandidat>{ 
                                                 new Kandidat("Samir", "Prusac", "9"),
                                                 new Kandidat("Sanela", "Emic", "10"),
-                                                new Kandidat("Antonela", "Maric", "11")});
+                                                new Kandidat("Antonela", "Maric", "11")};
            
-           List<Glasac> glasaci = new List<Glasac>({ 
+           List<Glasac> glasaci = new List<Glasac>{ 
                new Glasac("Dino", "Dinic", "adresa1", new DateTime(1988, 12, 4), "ABCD", "12"),
                new Glasac("Anela", "Anic", "adresa2", new DateTime(1990, 4, 2), "AB3F", "13"),
                new Glasac("Sabina", "Sabic", "adresa3", new DateTime(1979, 2, 8), "3B3F", "14")
-           });
+           };
 
             Izbori izbori = new Izbori(stranke, nezavisniKandidati, glasaci);
             return izbori;
@@ -60,7 +60,7 @@ namespace Zadaca1
                    if(!izbori.identificirajGlasaca(kod))
                         Console.WriteLine("Identifikacija glasaca nije uspjesna, pokusajte ponovo.");
                    else { 
-                    Console.WriteLine("Odaberi opciju glasanja: \n1. stranka\n2. kandidati iz stranke\n3. nezavisni kandidat ");
+                        Console.WriteLine("Odaberi opciju glasanja: \n1. stranka\n2. kandidati iz stranke\n3. nezavisni kandidat ");
                         int opcijaGlasanja = Convert.ToInt32(Console.ReadLine());
 
                         if(opcijaGlasanja == 1)
@@ -78,9 +78,10 @@ namespace Zadaca1
                             izbori.prikaziKandidateIzStranke(odabirStranke);
                             Console.WriteLine("Odaberite kandidate (0 za kraj): ");
                             List<int> odabraniKandidati = new List<int>();
+                            int noviKandidat = 0;
                             do
                             {
-                                 int noviKandidat = Convert.ToInt32(Console.ReadLine());
+                                 noviKandidat = Convert.ToInt32(Console.ReadLine());
                                  if(noviKandidat != 0 && !odabraniKandidati.Contains(noviKandidat))
                                     odabraniKandidati.Add(noviKandidat);
 
@@ -88,10 +89,11 @@ namespace Zadaca1
                             izbori.glasajZaKandidateIzStranke(odabirStranke, odabraniKandidati);
                                 
                        
-                        }else if(opcijaGlasanja == 3)
-                        { Console.WriteLine("Odaberite jednog nezavisnog kandidata: ");
+                        }
+                        else if(opcijaGlasanja == 3)
+                        {   Console.WriteLine("Odaberite jednog nezavisnog kandidata: ");
                             izbori.prikaziNezavisneKandidate();
-                             int odabraniNezavisni = Convert.ToInt32(Console.ReadLine());
+                            int odabraniNezavisni = Convert.ToInt32(Console.ReadLine());
                             izbori.glasajZaNezavisnog(odabraniNezavisni);
                         }
                         else
@@ -101,12 +103,13 @@ namespace Zadaca1
                    }
                     
 
-                }else if(odabir == 2) //prikazivanje rezultata
+                }
+                else if(odabir == 2) //prikazivanje rezultata
                 {
-                    Console.WriteLine("Izlaznost na izborima je "+ izbori.dajIzlasnost() + " %.\n");
-                    Console.WriteLine("Trenute mandatorne stranke su:\n");
+                    Console.WriteLine("Izlaznost na izborima je "+ izbori.izracunajIzlaznost() + " %.\n");
+                    Console.WriteLine("Trenutne mandatorne stranke su:\n");
                     izbori.ispisiMandatorneStranke();
-                    Console.WriteLine("Trenuti kandidati sa mandatima su:\n");
+                    Console.WriteLine("Trenutni kandidati sa mandatima su:\n");
                     izbori.ispisiKandidateSaMandatima();
 
                 }

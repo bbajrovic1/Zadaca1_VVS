@@ -8,8 +8,8 @@ namespace Zadaca1
         public string Prezime { get; set; }
         public string MaticniBroj { get; set; }
         public Stranka Stranka { get; set; }
-        public int BrojGlasova { get; }
-        public double procenatGlasova { get; set; }
+        public int BrojGlasova { get; set; }
+        public double ProcenatGlasova { get; set; }
         public Kandidat()
         {
         }
@@ -20,7 +20,7 @@ namespace Zadaca1
             MaticniBroj = maticni;
             Stranka = stranka;
             BrojGlasova = 0;
-            procenatGlasova = 0;
+            ProcenatGlasova = 0;
 
         }
         public Kandidat(string ime, string prezime, string maticni)
@@ -30,7 +30,7 @@ namespace Zadaca1
             MaticniBroj = maticni;
             BrojGlasova = 0;
         }
-        public void DodajGlas()
+        public void dodajGlas()
         {
             BrojGlasova++;
 

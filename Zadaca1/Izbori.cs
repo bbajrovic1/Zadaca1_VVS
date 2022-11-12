@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 namespace Zadaca1
 {
 	public class Izbori
@@ -8,16 +8,19 @@ namespace Zadaca1
 		public List<Kandidat> NezavisniKandidati { get; set; }
 		public List<Glasac> Glasaci { get; set; }
 		public int BrojIzlazaka { get; set; }
+		
 
 		public Izbori()
 		{
 			BrojIzlazaka = 0;
+			
 		}
-		public Izbori(List<Stranka> stranke, List<Kandidat> nezavisniKandidati, List<Glas> glasaci)
+		public Izbori(List<Stranka> stranke, List<Kandidat> nezavisniKandidati, List<Glasac> glasaci)
 		{ Stranke = stranke;
 			NezavisniKandidati = nezavisniKandidati;
 			Glasaci = glasaci;
 			BrojIzlazaka = 0;
+			
 		}
 		public void glasajZaStranku(int brojStranke)
 		{ //ovdje ce biti greska ako brojStranke bude veci od broja stranki ili negativan broj
@@ -29,7 +32,7 @@ namespace Zadaca1
 		{  //ovdje ce biti greska ako brojStranke bude veci od broja stranki ili negativan broj
 			Stranke[brojStranke - 1].dodajGlasSamoStranci();
 	
-		for(int i in odabraniKandidati)
+		foreach(int i in odabraniKandidati)
 			{
 				Stranke[brojStranke - 1].Kandidati[i - 1].dodajGlas(); //isto greska ako je niz kandidata s losim brojevima
 			}
@@ -39,38 +42,44 @@ namespace Zadaca1
 			NezavisniKandidati[odabraniNezavisniKandidat - 1].dodajGlas(); //greska ako je los broj
 
 		}
-		public double dajIzlaznost()
+		//ne ovako:
+		public double izracunajIzlaznost()
 		{
-			foreach (Glasac glasac in Glasaci)
+            //BrojIzlazaka = 0; bez ovog je greska jer se svaki put broji ispocetka i dodaje na vec izbrojane
+            foreach (Glasac glasac in Glasaci)
 			{
 				if (glasac.Glasao == true)
 					BrojIzlazaka++;
 			}
 
-			return ((double)BrojIzlazaka / Glasaci.Count) * 100;
+			return ((double)BrojIzlazaka / Glasaci.Count) * 100; //ovdje ce biti neka greska jer prikazuje 133% pri testiranju
 
-		}
-		public void izracunajProcenteGlasovaZaStranke()
-		{
-		for(Stranka stranka in Stranke)
+        }
+
+
+        public void izracunajProcenteGlasovaZaStranke()
+        { //izracunajIzlaznost(); ovo treba pozvati! u suprotnom brojIzlazaka je 0!
+            foreach (Stranka stranka in Stranke)
 			{
 				stranka.ProcenatGlasova = (stranka.BrojGlasova / (double)BrojIzlazaka) * 100;
 			}
 		}
 		public List<Stranka> dajStrankeSaMandatom()
 		{
-			List<Stranka> mandatorne = new List<Stranka>();
-		for(Stranka stranka in Stranke)
-				if (stranka.procenatGlasova > 2)
+			izracunajProcenteGlasovaZaStranke();
+            List<Stranka> mandatorne = new List<Stranka>();
+		foreach(Stranka stranka in Stranke)
+				if (stranka.ProcenatGlasova > 2)
 					mandatorne.Add(stranka);
-			return mandatorne
+			return mandatorne;
 	
 	}
 		public void izracunajProcenteGlasovaZaKandidate()
-		{  for(Stranka stranka in Stranke) {
-		for(Kandidat kandidat in stranka.Kandidati)
+		{  foreach(Stranka stranka in Stranke)
+			{
+				foreach(Kandidat kandidat in stranka.Kandidati)
 				{
-					kandidat.ProcenatGlasova = kandidat.BrojGlasova / (double)stranka.BrojGlasova;
+					kandidat.ProcenatGlasova = kandidat.BrojGlasova / (double)stranka.BrojGlasova; 
 				}
 
 			}
@@ -78,9 +87,10 @@ namespace Zadaca1
 		public List<Kandidat> dajKandidateSaMandatom()
 		{
 			List<Stranka> mandatorne = dajStrankeSaMandatom();
-			List<Kandidat> kandidatiSaMandatom = new List<Kandidat>();
-			for(Stranka stranka in mandatorne)
-			{ for(Kandidat kandidat in stranka.Kandidati) {
+			izracunajProcenteGlasovaZaKandidate();
+            List<Kandidat> kandidatiSaMandatom = new List<Kandidat>();
+			foreach(Stranka stranka in mandatorne)
+			{ foreach(Kandidat kandidat in stranka.Kandidati) {
 					if (kandidat.ProcenatGlasova > 20)
 						kandidatiSaMandatom.Add(kandidat);
 				}
@@ -90,7 +100,7 @@ namespace Zadaca1
 
 		public bool identificirajGlasaca(string id)
 		{ bool pronadjen = false;
-			for(Glasac glasac in Glasaci)
+			foreach(Glasac glasac in Glasaci)
 			{
 				if (String.Equals(glasac.ID, id) && glasac.Glasao == false)
 				{
@@ -104,7 +114,7 @@ namespace Zadaca1
 
 		public void prikaziStranke()
 		{ int i = 1;
-			for(Stranka stranka in Stranke)
+			foreach(Stranka stranka in Stranke)
 			{ Console.WriteLine(i + ". " + stranka.Naziv + "\n");
 				i++;
 			}
@@ -114,7 +124,7 @@ namespace Zadaca1
 		{ //ovdje ce biti greska ako brojStranke bude veci od broja stranki ili negativan broj
 			Stranka odabrana = Stranke[brojStranke - 1];
 			int i = 1;
-			for(Kandidat kandidat in odabrana.Kandidati)
+			foreach(Kandidat kandidat in odabrana.Kandidati)
 			{
 				Console.WriteLine(i + ". " + kandidat.Ime + " " + kandidat.Prezime + "\n"); //ako se neko isto zove greska jer glasac ne zna kojeg ce
 				i++;
@@ -123,7 +133,7 @@ namespace Zadaca1
 		}
 		public void prikaziNezavisneKandidate()
 		{ int i = 1;
-			for(Kandidat kandidat in NezavisniKandidati)
+			foreach(Kandidat kandidat in NezavisniKandidati)
 			{
 				Console.WriteLine(i + ". " + kandidat.Ime + " " + kandidat.Prezime + "\n"); //ako se neko isto zove greska jer glasac ne zna kojeg ce
 				i++;
@@ -132,13 +142,13 @@ namespace Zadaca1
 		public void ispisiMandatorneStranke()
 		{
 			List<Stranka> mandatorne = dajStrankeSaMandatom();
-			for(Stranka stranka in mandatorne)
+			foreach(Stranka stranka in mandatorne)
 				Console.WriteLine(stranka.Naziv + " sa " + stranka.BrojGlasova + " glasova.\n");
 		}
 		public void ispisiKandidateSaMandatima()
 		{
 			List<Kandidat> mandatorni = dajKandidateSaMandatom();
-			for(Kandidat kandidat in mandatorni)
+			foreach(Kandidat kandidat in mandatorni)
 				Console.WriteLine(kandidat.Ime + " " + kandidat.Prezime + " sa " + kandidat.BrojGlasova + " glasova.\n");
 		}
 
