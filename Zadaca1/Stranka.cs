@@ -1,43 +1,46 @@
 ﻿using System;
 
-public class Stranka
+namespace Zadaca1
 {
-    public string Naziv { get; set; }
-    public List<Kandidat> Kandidati { get; set; }
-    public int BrojGlasova { get; }
-    public double procenatGlasova { get; set; }
-
-	public Stranka(string naziv, List<Kandidat> kandidati) 
+	public class Stranka
 	{
-		Naziv = naziv;
-		Kandidati = kandidati;
-		BrojGlasova= 0;
-		procenatGlasova = 0;
+		public string Naziv { get; set; }
+		public List<Kandidat> Kandidati { get; set; }
+		public int BrojGlasova { get; }
+		public double procenatGlasova { get; set; }
 
-    }
-    public Stranka(string naziv)
-    {
-        Naziv = naziv;
-        Kandidati = new List<Kandidat>();
-        BrojGlasova = 0;
-        procenatGlasova = 0;
-
-    }
-    public void dodajGlas()
-	{
-		BrojGlasova++;
-		foreach (Kandidat kandidat in Kandidati)
+		public Stranka(string naziv, List<Kandidat> kandidati)
 		{
-			kandidat.dodajGlas();
+			Naziv = naziv;
+			Kandidati = kandidati;
+			BrojGlasova = 0;
+			procenatGlasova = 0;
 
 		}
-	}
-	public void dodajGlasSamoStranci()
-	{
-		BrojGlasova++;
-	}
-	public void dajProcenatGlasova()
-	{
+		public Stranka(string naziv)
+		{
+			Naziv = naziv;
+			Kandidati = new List<Kandidat>();
+			BrojGlasova = 0;
+			procenatGlasova = 0;
 
+		}
+		public void dodajGlas()
+		{
+			BrojGlasova++;
+			foreach (Kandidat kandidat in Kandidati)
+			{
+				kandidat.dodajGlas();
+
+			}
+		}
+		public void dodajGlasSamoStranci()
+		{
+			BrojGlasova++;
+		}
+		public void dajProcenatGlasova()
+		{
+
+		}
 	}
 }
