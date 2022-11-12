@@ -2,40 +2,42 @@
 
 public class Izbori
 {
-	private List<Stranka> Stranke { get; set; }
-	private List<Kandidat> NezavisniKandidati { get; set; }
-	private List<Glasac> Glasaci { get; set; }
-	private int BrojIzlazaka { get; set; }
+    public List<Stranka> Stranke { get; set; }
+    public List<Kandidat> NezavisniKandidati { get; set; }
+    public List<Glasac> Glasaci { get; set; }
+    public int BrojIzlazaka { get; set; }
 
 	public Izbori()
 	{
 		BrojIzlazaka = 0;
 	}
-    public Izbori(List<Stranka> stranke, List<Kandidat> kandidati, List<Glas> glasaci)
-    {   Stranke = stranke; 
-		Kandidati = kandidati;
+    public Izbori(List<Stranka> stranke, List<Kandidat> nezavisniKandidati, List<Glas> glasaci)
+    {   Stranke = stranke;
+        NezavisniKandidati = nezavisniKandidati;
 		Glasaci = glasaci;
+        BrojIzlazaka = 0;
     }
-	public void Glasaj(int brojStranke)
-	{
+	public void glasajZaStranku(int brojStranke)
+	{ //ovdje ce biti greska ako brojStranke bude veci od broja stranki ili negativan broj
 		Stranke[brojStranke - 1].dodajGlas();
 
 
 	}
-    public void Glasaj(int brojStranke, List<int> odabraniKandidati)
-    {  Stranke[brojStranke - 1].dodajGlasSamoStranci();
+    public void glasajZaKandidateIzStranke(int brojStranke, List<int> odabraniKandidati)
+    {  //ovdje ce biti greska ako brojStranke bude veci od broja stranki ili negativan broj
+        Stranke[brojStranke - 1].dodajGlasSamoStranci();
 	
 		for(int i in odabraniKandidati)
 		{
-			Stranke[brojStranke-1].Kandidati[i - 1].dodajGlas();
+			Stranke[brojStranke-1].Kandidati[i - 1].dodajGlas(); //isto greska ako je niz kandidata s losim brojevima
 		}
     }
-    public void Glasaj(bool nezavisni, int odabraniNezavisniKandidat)
+    public void glasajZaNezavisnog(int odabraniNezavisniKandidat)
 	{
-		NezavisniKandidati[odabraniNezavisniKandidat - 1].dodajGlas();
+		NezavisniKandidati[odabraniNezavisniKandidat - 1].dodajGlas(); //greska ako je los broj
 
     }
-	public double DajIzlaznost()
+	public double dajIzlaznost()
 	{ 
 		foreach(Glasac glasac in Glasaci)
 		{
@@ -81,6 +83,61 @@ public class Izbori
             }
 			return kandidatiSaMandatom;
     }
+
+	public bool identificirajGlasaca(string id)
+	{ bool pronadjen = false;
+			for(Glasac glasac in Glasaci)
+			{
+				if (String.Equals(glasac.ID, id) && glasac.Glasao == false)
+				{  
+					pronadjen = true;
+					glasac.Glasao = true;
+					break;
+				} 
+			}
+			return pronadjen;	
+	}
+
+	public void prikaziStranke()
+	{ int i = 1;
+			for(Stranka stranka in Stranke)
+			{ Console.WriteLine(i+ ". " + stranka.Naziv + "\n");
+				i++;
+			}
+	}
+
+	public void prikaziKandidateIzStranke(int brojStranke)
+        { //ovdje ce biti greska ako brojStranke bude veci od broja stranki ili negativan broj
+			Stranka odabrana = Stranke[brojStranke - 1];
+			int i = 1;
+			for(Kandidat kandidat in odabrana.Kandidati)
+			{
+				Console.WriteLine(i + ". " + kandidat.Ime + " " + kandidat.Prezime + "\n"); //ako se neko isto zove greska jer glasac ne zna kojeg ce
+				i++;
+			}
+
+        }
+	public void prikaziNezavisneKandidate()
+		{ int i = 1;
+			for(Kandidat kandidat in NezavisniKandidati)
+			{
+                Console.WriteLine(i + ". " + kandidat.Ime + " " + kandidat.Prezime + "\n"); //ako se neko isto zove greska jer glasac ne zna kojeg ce
+                i++;
+            }
+		}
+	public void ispisiMandatorneStranke()
+		{
+			List<Stranka> mandatorne = dajStrankeSaMandatom();
+			for(Stranka stranka in mandatorne)
+				Console.WriteLine(stranka.Naziv +" sa " + stranka.BrojGlasova +" glasova.\n");
+		}
+	public void ispisiKandidateSaMandatima()
+		{
+			List<Kandidat> mandatorni = dajKandidateSaMandatom();
+			for(Kandidat kandidat in mandatorni)
+				Console.WriteLine(kandidat.Ime + " " + kandidat.Prezime + " sa " + kandidat.BrojGlasova + " glasova.\n");
+		}
+
 
 
 

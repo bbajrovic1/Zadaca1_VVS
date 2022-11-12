@@ -2,12 +2,12 @@
 
 public class Kandidat
 {
-    private string Ime { get; set; }
-    private string Prezime { get; set; }
-    private string MaticniBroj { get; set; }
-    private Stranka Stranka { get; set; }
-    private int BrojGlasova { get; }
-    private double procenatGlasova { get; set; }
+    public string Ime { get; set; }
+    public string Prezime { get; set; }
+    public string MaticniBroj { get; set; }
+    public Stranka Stranka { get; set; }
+    public int BrojGlasova { get; }
+    public double procenatGlasova { get; set; }
     public Kandidat()
 	{
 	}

@@ -2,14 +2,14 @@
 
 public class Glasac
 {
-	private string Ime { get; set; }
-	private string Prezime { get; set; }
-	private string Adresa { get; set; }
-	private DateTime DatumRodjenja { get; set; }
-	private string LicnaKarta { get; set; }
-	private string MaticniBroj { get; set; }
-	private string ID { get; }
-	private bool Glasao { get; set; }
+	public string Ime { get; set; }
+    public string Prezime { get; set; }
+    public string Adresa { get; set; }
+    public DateTime DatumRodjenja { get; set; }
+    public string LicnaKarta { get; set; }
+    public string MaticniBroj { get; set; }
+    public string ID { get; }
+    public bool Glasao { get; set; }
 
 	public Glasac()
 	{
