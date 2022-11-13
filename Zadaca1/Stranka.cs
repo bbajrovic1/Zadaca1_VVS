@@ -13,7 +13,7 @@ namespace Zadaca1
 		{
 			Naziv = naziv;
 			Kandidati = kandidati;
-			ProcenatGlasova = 0; //
+			ProcenatGlasova = 0; //Stefani - feedback
 			BrojGlasova = 0;
 			
 

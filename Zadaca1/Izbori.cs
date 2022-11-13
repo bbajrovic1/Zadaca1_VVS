@@ -124,10 +124,10 @@ namespace Zadaca1
 			return pronadjen;
 		}
 
-		public void prikaziStranke() //Stefani
+		public void prikaziStranke() //Stefani - feedback
 		{ int i = 1;
 			foreach(Stranka stranka in Stranke)
-			{ Console.WriteLine(i + ". " + stranka.Naziv + "\n");
+			{ Console.WriteLine(i + ". " + stranka.Naziv + Environment.NewLine);
 				i++;
 			}
 		}
