@@ -20,7 +20,7 @@ namespace Zadaca1
             MaticniBroj = maticni;
             Stranka = stranka;
             BrojGlasova = 0;
-            ProcenatGlasova = 0;
+            ProcenatGlasova = 0; //ova dva parametra se moraju postaviti na 0
 
         }
         public Kandidat(string ime, string prezime, string maticni)

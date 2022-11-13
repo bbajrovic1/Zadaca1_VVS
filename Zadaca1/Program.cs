@@ -106,7 +106,7 @@ namespace Zadaca1
                 }
                 else if(odabir == 2) //prikazivanje rezultata
                 {
-                    Console.WriteLine("Izlaznost na izborima je "+ izbori.izracunajIzlaznost() + " %.\n");
+                    Console.WriteLine("Izlaznost na izborima je "+ izbori.dajIzlaznost() + " %.\n");
                     Console.WriteLine("Trenutne mandatorne stranke su:\n");
                     izbori.ispisiMandatorneStranke();
                     Console.WriteLine("Trenutni kandidati sa mandatima su:\n");

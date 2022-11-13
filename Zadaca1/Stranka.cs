@@ -14,7 +14,7 @@ namespace Zadaca1
 			Naziv = naziv;
 			Kandidati = kandidati;
 			BrojGlasova = 0;
-			ProcenatGlasova = 0;
+			ProcenatGlasova = 0; //mora biti 0
 
 		}
 		public Stranka(string naziv)

@@ -42,8 +42,8 @@ namespace Zadaca1
 			NezavisniKandidati[odabraniNezavisniKandidat - 1].dodajGlas(); //greska ako je los broj
 
 		}
-		//ne ovako:
-		public double izracunajIzlaznost()
+		
+		public double dajIzlaznost() //lose imenovana motoda: treba izracunajIzlaznost()
 		{
             //BrojIzlazaka = 0; bez ovog je greska jer se svaki put broji ispocetka i dodaje na vec izbrojane
             foreach (Glasac glasac in Glasaci)
