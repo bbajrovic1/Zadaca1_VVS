@@ -62,8 +62,8 @@ namespace Zadaca1
                    else { 
                         Console.WriteLine("Odaberi opciju glasanja: \n1. stranka\n2. kandidati iz stranke\n3. nezavisni kandidat ");
                         int opcijaGlasanja = Convert.ToInt32(Console.ReadLine());
-
-                        if(opcijaGlasanja == 1) //kod opcija je bolje mozda switch case - Stefani
+                        //Stefani
+                        if(opcijaGlasanja == 1)
                         {  
                             Console.WriteLine("Odaberite jednu stranku: ");
                             izbori.prikaziStranke();
@@ -82,7 +82,7 @@ namespace Zadaca1
                             do
                             {
                                  noviKandidat = Convert.ToInt32(Console.ReadLine());
-                                 if(noviKandidat != 0 && !odabraniKandidati.Contains(noviKandidat)) //nismo provjerili da li je vec odabran kandidat - Stefani
+                                 if(noviKandidat != 0) 
                                     odabraniKandidati.Add(noviKandidat);
 
                             }while(noviKandidat != 0 );

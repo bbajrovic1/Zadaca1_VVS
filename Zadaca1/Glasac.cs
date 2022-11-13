@@ -15,7 +15,7 @@ namespace Zadaca1
 
 		public Glasac() //Stefani
 		{
-			Glasao = false; //ovdje se mora staviti Glasao=false zbog metode glasa identificirajGlasaca() 
+			  
 
         }
 
@@ -28,10 +28,10 @@ namespace Zadaca1
 			DatumRodjenja = datumRodjenja;
 			LicnaKarta = licna;
 			MaticniBroj = maticni;
-			Glasao = false; //i ovdje
 			ID = ime.Substring(0, 2) + prezime.Substring(0, 2) +
 				adresa.Substring(0, 2) + licna.Substring(0, 2) + maticni.Substring(0, 2);
 
+		
 		}
 
 
