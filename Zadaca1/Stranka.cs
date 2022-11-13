@@ -25,7 +25,7 @@ namespace Zadaca1
 			ProcenatGlasova = 0;
 
 		}
-		public void dodajGlas()
+		public void dodajGlas() //Ema
 		{
 			BrojGlasova++;
 			foreach (Kandidat kandidat in Kandidati)

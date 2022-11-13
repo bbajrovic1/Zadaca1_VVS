@@ -13,11 +13,13 @@ namespace Zadaca1
 		public string ID { get; }
 		public bool Glasao { get; set; }
 
-		public Glasac()
+		public Glasac() //Stefani
 		{
 			Glasao = false; //ovdje se mora staviti Glasao=false zbog metode glasa identificirajGlasaca() 
 
         }
+
+
 		public Glasac(string ime, string prezime, string adresa, DateTime datumRodjenja, string licna, string maticni)
 		{
 			Ime = ime;

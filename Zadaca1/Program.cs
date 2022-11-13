@@ -5,7 +5,7 @@ namespace Zadaca1
 {
     internal class Program
     {
-        static Izbori napuni()
+        static Izbori napuni() //Merjem
         {
             
            Stranka stranka1 = new Stranka("SDA");
@@ -48,9 +48,9 @@ namespace Zadaca1
             Izbori izbori = napuni();
 
             Console.WriteLine("Odaberi opciju:\n1. glasaj\n2. prikazi rezultate\n0 za kraj");
-            int odabir = Convert.ToInt32(Console.ReadLine());
+            int odabir = Convert.ToInt32(Console.ReadLine());   //Ema - sta ako unesemo string
             
-            while(odabir != 0)
+            while(odabir != 0)  //ovdje bi bilo bolje do while da se ustedi na linijama koda - Bakir
             {
                 if(odabir == 1)
                 {
@@ -63,7 +63,7 @@ namespace Zadaca1
                         Console.WriteLine("Odaberi opciju glasanja: \n1. stranka\n2. kandidati iz stranke\n3. nezavisni kandidat ");
                         int opcijaGlasanja = Convert.ToInt32(Console.ReadLine());
 
-                        if(opcijaGlasanja == 1)
+                        if(opcijaGlasanja == 1) //kod opcija je bolje mozda switch case - Stefani
                         {  
                             Console.WriteLine("Odaberite jednu stranku: ");
                             izbori.prikaziStranke();
@@ -82,7 +82,7 @@ namespace Zadaca1
                             do
                             {
                                  noviKandidat = Convert.ToInt32(Console.ReadLine());
-                                 if(noviKandidat != 0 && !odabraniKandidati.Contains(noviKandidat))
+                                 if(noviKandidat != 0 && !odabraniKandidati.Contains(noviKandidat)) //nismo provjerili da li je vec odabran kandidat - Stefani
                                     odabraniKandidati.Add(noviKandidat);
 
                             }while(noviKandidat != 0 );
@@ -98,13 +98,13 @@ namespace Zadaca1
                         }
                         else
                         {
-                            Console.WriteLine("Izabrali ste nepostojecu opciju, pokusajte ponovo"); //ovo je "greska" jer ne treba ga vracati na pocetak skroz vec samo na odabir opcije glasanja
+                            Console.WriteLine("Izabrali ste nepostojecu opciju, pokusajte ponovo"); //ovo je "greska" jer ne treba ga vracati na pocetak skroz vec samo na odabir opcije glasanja - Mirza
                         }
                    }
                     
 
                 }
-                else if(odabir == 2) //prikazivanje rezultata
+                else if(odabir == 2)
                 {
                     Console.WriteLine("Izlaznost na izborima je "+ izbori.dajIzlaznost() + " %.\n");
                     Console.WriteLine("Trenutne mandatorne stranke su:\n");

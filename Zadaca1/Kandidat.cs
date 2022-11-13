@@ -10,10 +10,13 @@ namespace Zadaca1
         public Stranka Stranka { get; set; }
         public int BrojGlasova { get; set; }
         public double ProcenatGlasova { get; set; }
+
         public Kandidat()
         {
         }
-        public Kandidat(string ime, string prezime, string maticni, Stranka stranka)
+
+
+        public Kandidat(string ime, string prezime, string maticni, Stranka stranka) //Mirza
         {
             Ime = ime;
             Prezime = prezime;
@@ -23,6 +26,8 @@ namespace Zadaca1
             ProcenatGlasova = 0; //ova dva parametra se moraju postaviti na 0
 
         }
+
+
         public Kandidat(string ime, string prezime, string maticni)
         {
             Ime = ime;
@@ -30,6 +35,8 @@ namespace Zadaca1
             MaticniBroj = maticni;
             BrojGlasova = 0;
         }
+
+
         public void dodajGlas()
         {
             BrojGlasova++;
