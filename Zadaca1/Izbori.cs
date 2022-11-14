@@ -23,8 +23,8 @@ namespace Zadaca1
 			
 		}
 		public void glasajZaStranku(int brojStranke)//Merjem
-		{ //ovdje ce biti greska ako brojStranke bude veci od broja stranki ili negativan broj
-			Stranke[brojStranke - 1].dodajGlas();
+		{ 
+			Stranke[brojStranke - 1].dodajGlas();  
 
 
 		}
@@ -150,7 +150,7 @@ namespace Zadaca1
 		{ int i = 1;
 			foreach(Kandidat kandidat in NezavisniKandidati)
 			{
-				Console.WriteLine(i + ". " + kandidat.Ime + " " + kandidat.Prezime + "\n"); //ako se neko isto zove greska jer glasac ne zna kojeg ce
+				Console.WriteLine(i + ". " + kandidat.Ime + " " + kandidat.Prezime + "\n"); 
 				i++;
 			}
 		}
