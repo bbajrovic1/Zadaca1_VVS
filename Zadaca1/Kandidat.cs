@@ -16,15 +16,14 @@ namespace Zadaca1
         }
 
 
-        public Kandidat(string ime, string prezime, string maticni, Stranka stranka) //Mirza
+        public Kandidat(string ime, string prezime, string maticni, Stranka stranka) // Bakir - Feedback
         {
             Ime = ime;
             Prezime = prezime;
             MaticniBroj = maticni;
             Stranka = stranka;
+            ProcenatGlasova = 0;
             BrojGlasova = 0;
-            ProcenatGlasova = 0; //ova dva parametra se moraju postaviti na 0
-
         }
 
 

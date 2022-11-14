@@ -89,7 +89,7 @@ namespace Zadaca1
 			{
 				foreach(Kandidat kandidat in stranka.Kandidati)
 				{
-					kandidat.ProcenatGlasova = kandidat.BrojGlasova / (double)stranka.BrojGlasova; //ovdje kao zaboravili cast u double
+					kandidat.ProcenatGlasova = kandidat.BrojGlasova / stranka.BrojGlasova; //potreban cast u double
 				}
 
 			}
