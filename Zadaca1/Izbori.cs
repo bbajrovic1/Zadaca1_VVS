@@ -67,7 +67,7 @@ namespace Zadaca1
 			//[komentar od Stefani]: Kada sam ja kucala issue za metodu ispod, pisala sam da je greska u racunu jer nemamo izracunajIzlaznost() u tom momentu (gornja zakomentarisana linija)
             foreach (Stranka stranka in Stranke)
 			{
-				stranka.ProcenatGlasova = (stranka.BrojGlasova / (double)BrojIzlazaka) * 100; //dijeljenje s nulom nije provjereno
+				stranka.ProcenatGlasova = (stranka.BrojGlasova / (double)BrojIzlazaka) * 100; // Merjem: Zahtjev za pregled: dijeljenje s nulom nije provjereno
 			}
 		}
 
@@ -150,7 +150,7 @@ namespace Zadaca1
 		{ int i = 1;
 			foreach(Kandidat kandidat in NezavisniKandidati)
 			{
-				Console.WriteLine(i + ". " + kandidat.Ime + " " + kandidat.Prezime + "\n"); 
+				Console.WriteLine(i + ". " + kandidat.Ime + " " + kandidat.Prezime + "\n"); //Merjem: Zahtjev za pregled: Bilo bi ljepse koristiti neke naprednije metode sa lambda funkcijama
 				i++;
 			}
 		}
