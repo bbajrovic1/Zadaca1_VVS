@@ -16,7 +16,7 @@ namespace Zadaca1
         }
 
 
-        public Kandidat(string ime, string prezime, string maticni, Stranka stranka) // Bakir - Feedback
+        public Kandidat(string ime, string prezime, string maticni, Stranka stranka) // resolved - Bakir
         {
             Ime = ime;
             Prezime = prezime;

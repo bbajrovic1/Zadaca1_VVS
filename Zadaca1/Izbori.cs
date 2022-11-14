@@ -24,7 +24,7 @@ namespace Zadaca1
 		}
 		public void glasajZaStranku(int brojStranke) //Merjem
 		{ if(brojStranke > 0 && brojStranke <= Stranke.Count) //u suprotnom je nevazeci glasacki "listic"
-			Stranke[brojStranke - 1].dodajGlas();  
+			Stranke[brojStranke - 1].dodajGlasStranciISvimKandidatima();  
 		}
 
 
@@ -50,35 +50,34 @@ namespace Zadaca1
 		}
 
 		
-		public double dajIzlaznost() //Bakir komentar - promijeniti naziv metode u izracunajIzlaznost
+		public double izracunajIzlaznost()	//resolved - Bakir
 		{ if (Glasaci.Count == 0) return 0;
-            /*zahtjev za pregled Bakir - BrojIzlazaka = 0; bez ovog je greska jer se svaki put broji ispocetka i dodaje na vec izbrojane*/
-            foreach (Glasac glasac in Glasaci)
+			BrojIzlazaka = 0;				/*resolved - Bakir*/
+			foreach (Glasac glasac in Glasaci)
 			{
 				if (glasac.Glasao == true)
 					BrojIzlazaka++;
 			}
 
-			return ((double)BrojIzlazaka / Glasaci.Count) * 100; /*zahtjev za pregled Bakir - ova greska je uzrokovana nedostatkom linije BrojIzlazaka = 0*/
+			return ((double)BrojIzlazaka / Glasaci.Count) * 100; /*resolved - Bakir*/
 
         }
 
 
-        public void izracunajProcenteGlasovaZaStranke() // Ema
-        { //izracunajIzlaznost(); ovo treba pozvati! u suprotnom brojIzlazaka je 0!
-		  //[komentar od Stefani]: Kada sam ja kucala issue za metodu ispod, pisala sam da je greska u racunu jer nemamo izracunajIzlaznost() u tom momentu (gornja zakomentarisana linija)
+        public void izracunajProcenteGlasovaZaStranke() // resolved issue - Ema
+        {	izracunajIzlaznost();
 			if (BrojIzlazaka == 0) return;
 			foreach (Stranka stranka in Stranke)
 			{
 				stranka.ProcenatGlasova = (stranka.BrojGlasova / (double)BrojIzlazaka) * 100; // Merjem: Zahtjev za pregled: dijeljenje s nulom nije provjereno
-		    											/*Ema dodaje zahtjev za pregled ove linije. Ručno promijeniti tip varijable BrojIzlazaka na double, da bi bili sigurni da nema odsjecanja decimala.*/
+		    											/*resolved - Ema*/
 			}
 		}
 
 
 		public List<Stranka> dajStrankeSaMandatom() //Stefani
 		{
-			//kada Ema popravi metodu izracunajProcenteGlasovaZaStranke, ovo ce se popraviti
+			//resolved - Ema
 			izracunajProcenteGlasovaZaStranke();
             List<Stranka> mandatorne = new List<Stranka>();
 			if (BrojIzlazaka == 0) return mandatorne;
@@ -102,14 +101,15 @@ namespace Zadaca1
 		}
 
 
-		public List<Kandidat> dajKandidateSaMandatom() //Bakir dodaje komentar - kod nije ispravno formatiran
+		public List<Kandidat> dajKandidateSaMandatom() //resolved - Bakir
 		{
 			List<Stranka> mandatorne = dajStrankeSaMandatom();
 			izracunajProcenteGlasovaZaKandidate();
             List<Kandidat> kandidatiSaMandatom = new List<Kandidat>();
 			if (BrojIzlazaka == 0) return kandidatiSaMandatom;
 			foreach(Stranka stranka in mandatorne)
-			{ foreach(Kandidat kandidat in stranka.Kandidati) {
+			{ 
+				foreach(Kandidat kandidat in stranka.Kandidati) {
 					if (kandidat.ProcenatGlasova > 20)
 						kandidatiSaMandatom.Add(kandidat);
 				}
@@ -117,7 +117,7 @@ namespace Zadaca1
 			return kandidatiSaMandatom;
 		}
 
-		public bool identificirajGlasaca(string id) /*Ema dodaje zahtjev za pregled ove linije. Varijabla pronadjen nema početnu vrijednost. Treba dodijeliti vrijednost false varijabli.*/
+		public bool identificirajGlasaca(string id) /*resolved - Ema*/
 		{ bool pronadjen = false;
 			foreach(Glasac glasac in Glasaci)
 			{
@@ -125,7 +125,7 @@ namespace Zadaca1
 				{
 					pronadjen = true;
 					glasac.Glasao = true;
-					break; /*Ema dodaje zahtjev za pregled ove linije. Nije dodan break kada traženi uslov bude ispunjen kako se ne bi desila situacija da glasač sa istim ID-em opet bude pronadjen*/
+					break; /*resolved - Ema*/
 				}
 			}
 			return pronadjen;
@@ -163,7 +163,7 @@ namespace Zadaca1
 		}
 
 
-		public void ispisiMandatorneStranke() //Bakir
+		public void ispisiMandatorneStranke() //resolved - Bakir
 		{
 			List<Stranka> mandatorne = dajStrankeSaMandatom();
 			foreach(Stranka stranka in mandatorne)
@@ -171,7 +171,7 @@ namespace Zadaca1
 		}
 
 
-		public void ispisiKandidateSaMandatima() //Emin komentar: Nije jasno šta metoda radi, da li se radi o kandidatima koji su nakon izbora osvojili mandate ili nešto drugo.
+		public void ispisiKandidateSaMandatima() //resolved - Ema
 		{
 			List<Kandidat> mandatorni = dajKandidateSaMandatom();
 			foreach(Kandidat kandidat in mandatorni)

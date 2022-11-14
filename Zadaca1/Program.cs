@@ -47,80 +47,91 @@ namespace Zadaca1
         {
             Izbori izbori = napuni();
 
-            Console.WriteLine("Odaberi opciju:\n1. glasaj\n2. prikazi rezultate\n0 za kraj");
-            int odabir = Convert.ToInt32(Console.ReadLine());   //Ema - sta ako unesemo string
-            
-            while(odabir != 0)  //ovdje bi bilo bolje do while da se ustedi na linijama koda - Bakir
-            {
-                if(odabir == 1)
-                {
-                    
-                   Console.WriteLine("Unesi identifikacijski kod: ");
-                   string kod = Console.ReadLine();
-                   if(!izbori.identificirajGlasaca(kod))
-                        Console.WriteLine("Identifikacija glasaca nije uspjesna, pokusajte ponovo.");
-                   else { 
-                        Console.WriteLine("Odaberi opciju glasanja: \n1. stranka\n2. kandidati iz stranke\n3. nezavisni kandidat ");
-                        int opcijaGlasanja = Convert.ToInt32(Console.ReadLine());
-                        //Stefani
-                        //pošto nije prava greška funkcionalnosti, da druge kolege ne bih remetila, neću mijenjati if else u switch case
-                        if(opcijaGlasanja == 1)
-                        {  
-                            Console.WriteLine("Odaberite jednu stranku: ");
-                            izbori.prikaziStranke();
-                            int odabirStranke = Convert.ToInt32(Console.ReadLine());
-                            izbori.glasajZaStranku(odabirStranke);
-                        }
-                        else if(opcijaGlasanja == 2)
-                        {
-                            Console.WriteLine("Odaberite jednu stranku: ");
-                            izbori.prikaziStranke();
-                            int odabirStranke = Convert.ToInt32(Console.ReadLine());
-                            izbori.prikaziKandidateIzStranke(odabirStranke);
-                            Console.WriteLine("Odaberite kandidate (0 za kraj): ");
-                            List<int> odabraniKandidati = new List<int>();
-                            int noviKandidat = 0;
-                            do
-                            {
-                                 noviKandidat = Convert.ToInt32(Console.ReadLine());
-                                 if(noviKandidat != 0 && !odabraniKandidati.Contains(noviKandidat)) 
-                                    odabraniKandidati.Add(noviKandidat);
+            int odabir;
 
-                            }while(noviKandidat != 0 );
-                            izbori.glasajZaKandidateIzStranke(odabirStranke, odabraniKandidati);
-                                
-                       
-                        }
-                        else if(opcijaGlasanja == 3)
-                        {   Console.WriteLine("Odaberite jednog nezavisnog kandidata: ");
-                            izbori.prikaziNezavisneKandidate();
-                            int odabraniNezavisni = Convert.ToInt32(Console.ReadLine());
-                            izbori.glasajZaNezavisnog(odabraniNezavisni);
-                        }
+            do//resolved issue - Bakir
+            {
+                Console.WriteLine("Odaberi opciju:\n1. glasaj\n2. prikazi rezultate\n0 za kraj");
+                odabir = Convert.ToInt32(Console.ReadLine());
+                if (odabir == 1)
+                {
+                    string kod;
+                    do                         //resolved issue - Bakir
+                    {
+                        Console.WriteLine("Unesi identifikacijski kod: ");
+                        kod = Console.ReadLine();
+                        if (!izbori.identificirajGlasaca(kod))
+                            Console.WriteLine("Identifikacija glasaca nije uspjesna, pokusajte ponovo\n");
                         else
-                        {
-                            Console.WriteLine("Izabrali ste nepostojecu opciju, pokusajte ponovo"); //"greska" jer ne treba ga vracati na pocetak skroz vec samo na odabir opcije glasanja - Mirza
+                        {   //ovo sve treba u jos jedan do while sve dok se bira nepostojeca opcija glasanja - Mirza
+                            Console.WriteLine("Odaberi opciju glasanja: \n1. stranka\n2. kandidati iz stranke\n3. nezavisni kandidat ");
+                            int opcijaGlasanja = Convert.ToInt32(Console.ReadLine());
+                            //Stefani
+                            //pošto nije prava greška funkcionalnosti, da druge kolege ne bih remetila, neću mijenjati if else u switch case
+                            if (opcijaGlasanja == 1)
+                            {
+                                Console.WriteLine("Odaberite jednu stranku: ");
+                                izbori.prikaziStranke();
+                                int odabirStranke = Convert.ToInt32(Console.ReadLine());
+                                izbori.glasajZaStranku(odabirStranke);
+                            }
+                            else if (opcijaGlasanja == 2)
+                            {
+                                Console.WriteLine("Odaberite jednu stranku: ");
+                                izbori.prikaziStranke();
+                                int odabirStranke = Convert.ToInt32(Console.ReadLine());
+                                izbori.prikaziKandidateIzStranke(odabirStranke);
+                                Console.WriteLine("Odaberite kandidate (0 za kraj): ");
+                                List<int> odabraniKandidati = new List<int>();
+                                int noviKandidat = 0;
+                                do
+                                {
+                                    noviKandidat = Convert.ToInt32(Console.ReadLine());
+                                    if (noviKandidat != 0 && !odabraniKandidati.Contains(noviKandidat))
+                                        odabraniKandidati.Add(noviKandidat);
+
+                                } while (noviKandidat != 0);
+                                izbori.glasajZaKandidateIzStranke(odabirStranke, odabraniKandidati);
+
+
+                            }
+                            else if (opcijaGlasanja == 3)
+                            {
+                                Console.WriteLine("Odaberite jednog nezavisnog kandidata: ");
+                                izbori.prikaziNezavisneKandidate();
+                                int odabraniNezavisni = Convert.ToInt32(Console.ReadLine());
+                                izbori.glasajZaNezavisnog(odabraniNezavisni);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Izabrali ste nepostojecu opciju, pokusajte ponovo"); //"greska" jer ne treba ga vracati na pocetak skroz vec samo na odabir opcije glasanja - Mirza
+                            }
                         }
-                   }
-                    
+                    } while (!izbori.identificirajGlasaca(kod));
+
 
                 }
-                else if(odabir == 2)
+                else if (odabir == 2)
                 {
-                    Console.WriteLine("Izlaznost na izborima je "+ izbori.dajIzlaznost() + " %.\n");
+                    Console.WriteLine("Izlaznost na izborima je " + izbori.izracunajIzlaznost() + " %.\n");
                     Console.WriteLine("Trenutne mandatorne stranke su:\n");
                     izbori.ispisiMandatorneStranke();
                     Console.WriteLine("Trenutni kandidati sa mandatima su:\n");
                     izbori.ispisiKandidateSaMandatima();
 
                 }
-                 Console.WriteLine("Odaberi opciju:\n1. glasaj\n2. prikazi rezultate\n0 za kraj");
-                 odabir = Convert.ToInt32(Console.ReadLine());
+                else if(odabir != 0)
+                {
+                    Console.WriteLine("Neispravna opcija, unesite ponovo\n");     //resolved issue - Ema
+                }
+                
+                
 
-            }
+            } while (odabir != 0);
 
-            
- 
+
+
+
 
         }
     }
