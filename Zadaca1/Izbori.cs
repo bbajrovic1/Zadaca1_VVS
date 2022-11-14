@@ -94,7 +94,7 @@ namespace Zadaca1
 			{
 				foreach(Kandidat kandidat in stranka.Kandidati)
 				{  if(stranka.BrojGlasova != 0)
-					kandidat.ProcenatGlasova = kandidat.BrojGlasova / stranka.BrojGlasova; //potreban cast u double
+					kandidat.ProcenatGlasova = kandidat.BrojGlasova / (double)stranka.BrojGlasova; //resolved - Mirza
 				}
 
 			}
@@ -146,7 +146,7 @@ namespace Zadaca1
 			int i = 1;
 			foreach(Kandidat kandidat in odabrana.Kandidati)
 			{
-				Console.WriteLine(i + ". " + kandidat.Ime + " " + kandidat.Prezime + "\n"); //ako se neko isto zove greska jer glasac ne zna kojeg ce
+				Console.WriteLine(i + ". " + kandidat.Ime + " " + kandidat.Prezime + " " + kandidat.JMBG.Substring(4, 3) + "\n"); //resolved - Mirza
 				i++;
 			}
 

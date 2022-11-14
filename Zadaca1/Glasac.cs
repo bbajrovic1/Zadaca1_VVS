@@ -9,7 +9,7 @@ namespace Zadaca1
 		public string Adresa { get; set; }
 		public DateTime DatumRodjenja { get; set; }
 		public string LicnaKarta { get; set; }
-		public string MaticniBroj { get; set; }
+		public string JMBG { get; set; }
 		public string ID { get; }
 		public bool Glasao { get; set; }
 
@@ -27,7 +27,7 @@ namespace Zadaca1
 			Adresa = adresa;
 			DatumRodjenja = datumRodjenja;
 			LicnaKarta = licna;
-			MaticniBroj = maticni;
+			JMBG = maticni;
 			ID = ime.Substring(0, 2) + prezime.Substring(0, 2) +
 				adresa.Substring(0, 2) + licna.Substring(0, 2) + maticni.Substring(0, 2);
 

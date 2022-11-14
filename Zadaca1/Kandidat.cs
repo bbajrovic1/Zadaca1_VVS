@@ -6,7 +6,7 @@ namespace Zadaca1
     {
         public string Ime { get; set; }
         public string Prezime { get; set; }
-        public string MaticniBroj { get; set; }
+        public string JMBG { get; set; }
         public Stranka Stranka { get; set; }
         public int BrojGlasova { get; set; }
         public double ProcenatGlasova { get; set; }
@@ -20,7 +20,7 @@ namespace Zadaca1
         {
             Ime = ime;
             Prezime = prezime;
-            MaticniBroj = maticni;
+            JMBG = maticni;
             Stranka = stranka;
             ProcenatGlasova = 0;
             BrojGlasova = 0;
@@ -31,7 +31,7 @@ namespace Zadaca1
         {
             Ime = ime;
             Prezime = prezime;
-            MaticniBroj = maticni;
+            JMBG = maticni;
             BrojGlasova = 0;
         }
 
