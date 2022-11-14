@@ -63,6 +63,7 @@ namespace Zadaca1
                         Console.WriteLine("Odaberi opciju glasanja: \n1. stranka\n2. kandidati iz stranke\n3. nezavisni kandidat ");
                         int opcijaGlasanja = Convert.ToInt32(Console.ReadLine());
                         //Stefani
+                        //pošto nije prava greška funkcionalnosti, da druge kolege ne bih remetila, neću mijenjati if else u switch case
                         if(opcijaGlasanja == 1)
                         {  
                             Console.WriteLine("Odaberite jednu stranku: ");
@@ -82,7 +83,7 @@ namespace Zadaca1
                             do
                             {
                                  noviKandidat = Convert.ToInt32(Console.ReadLine());
-                                 if(noviKandidat != 0) 
+                                 if(noviKandidat != 0 && !odabraniKandidati.Contains(noviKandidat)) 
                                     odabraniKandidati.Add(noviKandidat);
 
                             }while(noviKandidat != 0 );

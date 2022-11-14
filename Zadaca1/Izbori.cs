@@ -75,6 +75,7 @@ namespace Zadaca1
 
 		public List<Stranka> dajStrankeSaMandatom() //Stefani
 		{
+			//kada Ema popravi metodu izracunajProcenteGlasovaZaStranke, ovo ce se popraviti
 			izracunajProcenteGlasovaZaStranke();
             List<Stranka> mandatorne = new List<Stranka>();
 		foreach(Stranka stranka in Stranke)

@@ -15,8 +15,8 @@ namespace Zadaca1
 
 		public Glasac() //Stefani
 		{
-			  
 
+			Glasao = false;
         }
 
 
@@ -31,7 +31,7 @@ namespace Zadaca1
 			ID = ime.Substring(0, 2) + prezime.Substring(0, 2) +
 				adresa.Substring(0, 2) + licna.Substring(0, 2) + maticni.Substring(0, 2);
 
-		
+			Glasao= false;
 		}
 
 
