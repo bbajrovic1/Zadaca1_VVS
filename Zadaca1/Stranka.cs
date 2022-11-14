@@ -29,11 +29,11 @@ namespace Zadaca1
 		public void dodajGlas() //Emin komentar: Ime metode ne ukazuje kome se daje glas. Ime indicira da se glas daje samo stranki ali se kasnije treba updatovati i dodati glas svakom pojedinačnom članu stranke. 
 		{
 			BrojGlasova++;
-			foreach (Kandidat kandidat in Kandidati)
-			{
-				kandidat.dodajGlas();
+// 			foreach (Kandidat kandidat in Kandidati)
+// 			{
+// 				kandidat.dodajGlas();
 
-			}
+// 			} //dodano u issues
 		}
 		public void dodajGlasSamoStranci()
 		{
