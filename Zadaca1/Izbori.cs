@@ -22,34 +22,36 @@ namespace Zadaca1
 			BrojIzlazaka = 0;
 			
 		}
-		public void glasajZaStranku(int brojStranke)//Merjem
-		{ 
+		public void glasajZaStranku(int brojStranke) //Merjem
+		{ if(brojStranke > 0 && brojStranke <= Stranke.Count) //u suprotnom je nevazeci glasacki "listic"
 			Stranke[brojStranke - 1].dodajGlas();  
-
-
 		}
 
 
 		public void glasajZaKandidateIzStranke(int brojStranke, List<int> odabraniKandidati)//Merjem
-		{  //ovdje ce biti greska ako brojStranke bude veci od broja stranki ili negativan broj
-			Stranke[brojStranke - 1].dodajGlasSamoStranci();
-	
-			foreach(int i in odabraniKandidati)
+		{  
+			if (brojStranke > 0 && brojStranke <= Stranke.Count)
 			{
-				Stranke[brojStranke - 1].Kandidati[i - 1].dodajGlas(); //isto greska ako je niz kandidata s losim brojevima
+				Stranke[brojStranke - 1].dodajGlasSamoStranci();
+
+				foreach (int i in odabraniKandidati)
+				{   if(i > 0 && i <= Stranke[brojStranke - 1].Kandidati.Count)
+					Stranke[brojStranke - 1].Kandidati[i - 1].dodajGlas(); 
+				}
 			}
 		}
 
 
 		public void glasajZaNezavisnog(int odabraniNezavisniKandidat)//Merjem
 		{
-			NezavisniKandidati[odabraniNezavisniKandidat - 1].dodajGlas(); //greska ako je los broj
+            if (odabraniNezavisniKandidat > 0 && odabraniNezavisniKandidat <= NezavisniKandidati.Count)
+                NezavisniKandidati[odabraniNezavisniKandidat - 1].dodajGlas(); 
 
 		}
 
 		
 		public double dajIzlaznost() //Bakir komentar - promijeniti naziv metode u izracunajIzlaznost
-		{
+		{ if (Glasaci.Count == 0) return 0;
             /*zahtjev za pregled Bakir - BrojIzlazaka = 0; bez ovog je greska jer se svaki put broji ispocetka i dodaje na vec izbrojane*/
             foreach (Glasac glasac in Glasaci)
 			{
@@ -64,8 +66,9 @@ namespace Zadaca1
 
         public void izracunajProcenteGlasovaZaStranke() // Ema
         { //izracunajIzlaznost(); ovo treba pozvati! u suprotnom brojIzlazaka je 0!
-			//[komentar od Stefani]: Kada sam ja kucala issue za metodu ispod, pisala sam da je greska u racunu jer nemamo izracunajIzlaznost() u tom momentu (gornja zakomentarisana linija)
-            foreach (Stranka stranka in Stranke)
+		  //[komentar od Stefani]: Kada sam ja kucala issue za metodu ispod, pisala sam da je greska u racunu jer nemamo izracunajIzlaznost() u tom momentu (gornja zakomentarisana linija)
+			if (BrojIzlazaka == 0) return;
+			foreach (Stranka stranka in Stranke)
 			{
 				stranka.ProcenatGlasova = (stranka.BrojGlasova / (double)BrojIzlazaka) * 100; // Merjem: Zahtjev za pregled: dijeljenje s nulom nije provjereno
 		    											/*Ema dodaje zahtjev za pregled ove linije. Ručno promijeniti tip varijable BrojIzlazaka na double, da bi bili sigurni da nema odsjecanja decimala.*/
@@ -78,6 +81,7 @@ namespace Zadaca1
 			//kada Ema popravi metodu izracunajProcenteGlasovaZaStranke, ovo ce se popraviti
 			izracunajProcenteGlasovaZaStranke();
             List<Stranka> mandatorne = new List<Stranka>();
+			if (BrojIzlazaka == 0) return mandatorne;
 		foreach(Stranka stranka in Stranke)
 				if (stranka.ProcenatGlasova > 2)
 					mandatorne.Add(stranka);
@@ -90,7 +94,7 @@ namespace Zadaca1
 		{  foreach(Stranka stranka in Stranke)
 			{
 				foreach(Kandidat kandidat in stranka.Kandidati)
-				{
+				{  if(stranka.BrojGlasova != 0)
 					kandidat.ProcenatGlasova = kandidat.BrojGlasova / stranka.BrojGlasova; //potreban cast u double
 				}
 
@@ -103,6 +107,7 @@ namespace Zadaca1
 			List<Stranka> mandatorne = dajStrankeSaMandatom();
 			izracunajProcenteGlasovaZaKandidate();
             List<Kandidat> kandidatiSaMandatom = new List<Kandidat>();
+			if (BrojIzlazaka == 0) return kandidatiSaMandatom;
 			foreach(Stranka stranka in mandatorne)
 			{ foreach(Kandidat kandidat in stranka.Kandidati) {
 					if (kandidat.ProcenatGlasova > 20)
