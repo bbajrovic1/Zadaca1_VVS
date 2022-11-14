@@ -26,7 +26,7 @@ namespace Zadaca1
 			ProcenatGlasova = 0;
 
 		}
-		public void dodajGlas() //Ema
+		public void dodajGlas() //Emin komentar: Ime metode ne ukazuje kome se daje glas. Ime indicira da se glas daje samo stranki ali se kasnije treba updatovati i dodati glas svakom pojedinačnom članu stranke. 
 		{
 			BrojGlasova++;
 			foreach (Kandidat kandidat in Kandidati)
