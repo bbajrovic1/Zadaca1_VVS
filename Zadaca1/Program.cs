@@ -98,7 +98,7 @@ namespace Zadaca1
                         }
                         else
                         {
-                            Console.WriteLine("Izabrali ste nepostojecu opciju, pokusajte ponovo"); //ovo je "greska" jer ne treba ga vracati na pocetak skroz vec samo na odabir opcije glasanja - Mirza
+                            Console.WriteLine("Izabrali ste nepostojecu opciju, pokusajte ponovo"); //"greska" jer ne treba ga vracati na pocetak skroz vec samo na odabir opcije glasanja - Mirza
                         }
                    }
                     
