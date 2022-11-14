@@ -67,7 +67,7 @@ namespace Zadaca1
 			//[komentar od Stefani]: Kada sam ja kucala issue za metodu ispod, pisala sam da je greska u racunu jer nemamo izracunajIzlaznost() u tom momentu (gornja zakomentarisana linija)
             foreach (Stranka stranka in Stranke)
 			{
-				stranka.ProcenatGlasova = (stranka.BrojGlasova / (double)BrojIzlazaka) * 100;
+				stranka.ProcenatGlasova = (stranka.BrojGlasova / (double)BrojIzlazaka) * 100; //dijeljenje s nulom nije provjereno
 			}
 		}
 
