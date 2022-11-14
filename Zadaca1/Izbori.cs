@@ -68,6 +68,7 @@ namespace Zadaca1
             foreach (Stranka stranka in Stranke)
 			{
 				stranka.ProcenatGlasova = (stranka.BrojGlasova / (double)BrojIzlazaka) * 100; // Merjem: Zahtjev za pregled: dijeljenje s nulom nije provjereno
+		    											/*Ema dodaje zahtjev za pregled ove linije. Ručno promijeniti tip varijable BrojIzlazaka na double, da bi bili sigurni da nema odsjecanja decimala.*/
 			}
 		}
 
@@ -110,7 +111,7 @@ namespace Zadaca1
 			return kandidatiSaMandatom;
 		}
 
-		public bool identificirajGlasaca(string id) //Ema
+		public bool identificirajGlasaca(string id) /*Ema dodaje zahtjev za pregled ove linije. Varijabla pronadjen nema početnu vrijednost. Treba dodijeliti vrijednost false varijabli.*/
 		{ bool pronadjen = false;
 			foreach(Glasac glasac in Glasaci)
 			{
@@ -118,7 +119,7 @@ namespace Zadaca1
 				{
 					pronadjen = true;
 					glasac.Glasao = true;
-					break;
+					break; /*Ema dodaje zahtjev za pregled ove linije. Nije dodan break kada traženi uslov bude ispunjen kako se ne bi desila situacija da glasač sa istim ID-em opet bude pronadjen*/
 				}
 			}
 			return pronadjen;
@@ -164,7 +165,7 @@ namespace Zadaca1
 		}
 
 
-		public void ispisiKandidateSaMandatima() //Ema
+		public void ispisiKandidateSaMandatima() //Emin komentar: Nije jasno šta metoda radi, da li se radi o kandidatima koji su nakon izbora osvojili mandate ili nešto drugo.
 		{
 			List<Kandidat> mandatorni = dajKandidateSaMandatom();
 			foreach(Kandidat kandidat in mandatorni)
