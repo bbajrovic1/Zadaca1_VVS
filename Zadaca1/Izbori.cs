@@ -48,16 +48,16 @@ namespace Zadaca1
 		}
 
 		
-		public double dajIzlaznost() //lose imenovana motoda: treba izracunajIzlaznost() Bakir
+		public double dajIzlaznost() //Bakir komentar - promijeniti naziv metode u izracunajIzlaznost
 		{
-            //BrojIzlazaka = 0; bez ovog je greska jer se svaki put broji ispocetka i dodaje na vec izbrojane
+            /*zahtjev za pregled Bakir - BrojIzlazaka = 0; bez ovog je greska jer se svaki put broji ispocetka i dodaje na vec izbrojane*/
             foreach (Glasac glasac in Glasaci)
 			{
 				if (glasac.Glasao == true)
 					BrojIzlazaka++;
 			}
 
-			return ((double)BrojIzlazaka / Glasaci.Count) * 100; //ovdje ce biti neka greska jer prikazuje 133% pri testiranju
+			return ((double)BrojIzlazaka / Glasaci.Count) * 100; /*zahtjev za pregled Bakir - ova greska je uzrokovana nedostatkom linije BrojIzlazaka = 0*/
 
         }
 
@@ -97,7 +97,7 @@ namespace Zadaca1
 		}
 
 
-		public List<Kandidat> dajKandidateSaMandatom() //Bakir
+		public List<Kandidat> dajKandidateSaMandatom() //Bakir dodaje komentar - kod nije ispravno formatiran
 		{
 			List<Stranka> mandatorne = dajStrankeSaMandatom();
 			izracunajProcenteGlasovaZaKandidate();
