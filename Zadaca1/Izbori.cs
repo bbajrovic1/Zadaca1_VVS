@@ -141,8 +141,10 @@ namespace Zadaca1
 
 
 		public void prikaziKandidateIzStranke(int brojStranke) //Mirza
-		{ //ovdje ce biti greska ako brojStranke bude veci od broja stranki ili negativan broj
-			Stranka odabrana = Stranke[brojStranke - 1];
+		{
+			if (brojStranke < 0 || brojStranke >= Stranke.Count)
+				throw new Exception("Nevalidan broj stranke.");
+            Stranka odabrana = Stranke[brojStranke - 1];
 			int i = 1;
 			foreach(Kandidat kandidat in odabrana.Kandidati)
 			{
@@ -178,9 +180,31 @@ namespace Zadaca1
 				Console.WriteLine(kandidat.Ime + " " + kandidat.Prezime + " sa " + kandidat.BrojGlasova + " glasova.\n");
 		}
 
+		public void prikaziSveKandidate()
+		{
+            int i = 1;
+            foreach (Stranka stranka in Stranke)
+			{
+                foreach (Kandidat kandidat in stranka.Kandidati)
+                {
+                    Console.WriteLine(i + ". " + kandidat.Ime + " " + kandidat.Prezime + "\n");
+                    i++;
+                }
+            }
+        
+			foreach (Kandidat kandidat in NezavisniKandidati)
+			{
+                Console.WriteLine(i + ". " + kandidat.Ime + " " + kandidat.Prezime + "\n");
+                i++;
+            }
+				
+		}
 
-
-
+		public void prikaziProsleStrankeZaKandidata(int odabirStranke, int noviKandidat)
+		{   if (odabirStranke < 1 || odabirStranke > Stranke.Count || noviKandidat < 1 || noviKandidat > Stranke[odabirStranke - 1].Kandidati.Count)
+				throw new Exception("Nevalidan odabir.");
+			Stranke[odabirStranke-1].Kandidati[noviKandidat-1].prikaziProsleStranke();
+		}
 	}
 }
 

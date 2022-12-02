@@ -42,6 +42,15 @@ namespace Zadaca1
 		{
 			BrojGlasova++;
 		}
+		public void prikaziKandidate()
+		{
+			int i = 1;
+			foreach (Kandidat kandidat in Kandidati)
+			{
+				Console.WriteLine(i + ". " + kandidat.Ime + " " + kandidat.Prezime + "\n");
+				i++;
+			}
+		}
 		
 	}
 }

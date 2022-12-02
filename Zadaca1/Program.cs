@@ -21,6 +21,9 @@ namespace Zadaca1
            Kandidat kandidat3_2 = new Kandidat("Toni", "Senic", "6106997", stranka3);
            Kandidat kandidat4_1 = new Kandidat("Mia", "Santic", "7105957", stranka4);
            Kandidat kandidat4_2 = new Kandidat("Mijo", "Mijic", "8104937", stranka4);
+           
+           
+
 
            stranka1.Kandidati = new List<Kandidat>{ kandidat1_1, kandidat1_2};
            stranka2.Kandidati = new List<Kandidat>{ kandidat2_1, kandidat2_2};
@@ -31,7 +34,13 @@ namespace Zadaca1
                                                 new Kandidat("Samir", "Prusac", "9"),
                                                 new Kandidat("Sanela", "Emic", "10"),
                                                 new Kandidat("Antonela", "Maric", "11")};
-           
+
+            kandidat1_1.ProsleStranke = new List<Tuple<Stranka, DateTime, DateTime>> 
+            { new Tuple<Stranka, DateTime, DateTime>(stranka3, new DateTime(2000, 3, 1), new DateTime(2004, 4, 2)),
+                new Tuple<Stranka, DateTime, DateTime>(stranka2, new DateTime(2005, 3, 1), new DateTime(2007, 4, 2))
+            };
+
+
            List<Glasac> glasaci = new List<Glasac>{ 
                new Glasac("Dino", "Dinic", "adresa1", new DateTime(1988, 12, 4), "111E222", "0412988000000"),
                new Glasac("Anela", "Anic", "adresa2", new DateTime(1990, 4, 2), "123E222", "0204990111111"),
@@ -93,7 +102,14 @@ namespace Zadaca1
                                     {
                                         noviKandidat = Convert.ToInt32(Console.ReadLine());
                                         if (noviKandidat != 0 && !odabraniKandidati.Contains(noviKandidat))
+                                        {
                                             odabraniKandidati.Add(noviKandidat);
+                                            Console.WriteLine("Da li zelite prikaz historije stranaka za odabranog kandidata? 1-da 0-ne");
+                                            int prikaziProsleStranke = Convert.ToInt32(Console.ReadLine());
+                                            if(prikaziProsleStranke == 1)
+                                                izbori.prikaziProsleStrankeZaKandidata(odabirStranke, noviKandidat);
+                                        }
+
 
                                     } while (noviKandidat != 0);
                                     izbori.glasajZaKandidateIzStranke(odabirStranke, odabraniKandidati);
@@ -127,6 +143,7 @@ namespace Zadaca1
                     izbori.ispisiKandidateSaMandatima();
 
                 }
+                
                 else if(odabir != 0)
                 {
                     Console.WriteLine("Neispravna opcija, unesite ponovo\n");     //resolved issue - Ema

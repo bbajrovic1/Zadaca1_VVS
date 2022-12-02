@@ -11,6 +11,8 @@ namespace Zadaca1
         public Stranka Stranka { get; set; }
         public int BrojGlasova { get; set; }
         public double ProcenatGlasova { get; set; }
+        public List<Tuple<Stranka, DateTime, DateTime>> ProsleStranke { get; set; }
+
 
         public Kandidat()
         {
@@ -25,6 +27,7 @@ namespace Zadaca1
             Stranka = stranka;
             ProcenatGlasova = 0;
             BrojGlasova = 0;
+            ProsleStranke = new List<Tuple<Stranka, DateTime, DateTime>>();
         }
 
 
@@ -34,6 +37,7 @@ namespace Zadaca1
             Prezime = prezime;
             JMBG = maticni;
             BrojGlasova = 0;
+            ProsleStranke = new List<Tuple<Stranka, DateTime, DateTime>>();
         }
 
 
@@ -41,6 +45,19 @@ namespace Zadaca1
         {
             BrojGlasova++;
 
+
+        }
+
+        public void prikaziProsleStranke()
+        {
+            //„Stranka: X, Članstvo od: Y, Članstvo do: Z“.
+            if (ProsleStranke.Count == 0)
+                Console.WriteLine("Kandidat nije bio ni u jednoj stranci u proslosti.");
+
+            foreach(Tuple<Stranka, DateTime, DateTime> tup in ProsleStranke)
+            {
+                Console.WriteLine("Stranka: " + tup.Item1.Naziv + ", Članstvo od: " + tup.Item2.ToString("dd.MM.yyyy") + ", Članstvo do: " + tup.Item3.ToString("dd.MM.yyyy") + "\n");
+            }
         }
 
     }
