@@ -33,9 +33,9 @@ namespace Zadaca1
                                                 new Kandidat("Antonela", "Maric", "11")};
            
            List<Glasac> glasaci = new List<Glasac>{ 
-               new Glasac("Dino", "Dinic", "adresa1", new DateTime(1988, 12, 4), "ABCD", "12"),
-               new Glasac("Anela", "Anic", "adresa2", new DateTime(1990, 4, 2), "AB3F", "1301001"),
-               new Glasac("Sabina", "Sabic", "adresa3", new DateTime(1979, 2, 8), "3B3F", "1405998")
+               new Glasac("Dino", "Dinic", "adresa1", new DateTime(1988, 12, 4), "111E222", "0412988000000"),
+               new Glasac("Anela", "Anic", "adresa2", new DateTime(1990, 4, 2), "123E222", "0204990111111"),
+               new Glasac("Sabina", "Sabic", "adresa3", new DateTime(1979, 2, 8), "333E222", "0802979333333")
            };
 
             Izbori izbori = new Izbori(stranke, nezavisniKandidati, glasaci);
