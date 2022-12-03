@@ -60,7 +60,7 @@ namespace Zadaca1
 
             do//resolved issue - Bakir
             {
-                Console.WriteLine("Odaberi opciju:\n1. glasaj\n2. prikazi rezultate\n0 za kraj");
+                Console.WriteLine("Odaberi opciju:\n1. glasaj\n2. prikazi rezultate\n3. rezultati za stranke\n0 za kraj");
                 odabir = Convert.ToInt32(Console.ReadLine());
                 if (odabir == 1)
                 {
@@ -142,6 +142,10 @@ namespace Zadaca1
                     Console.WriteLine("Trenutni kandidati sa mandatima su:\n");
                     izbori.ispisiKandidateSaMandatima();
 
+                }
+                else if (odabir == 3)
+                {
+                    izbori.prikaziRezultateZaSveStranke();
                 }
                 
                 else if(odabir != 0)

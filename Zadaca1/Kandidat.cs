@@ -47,6 +47,10 @@ namespace Zadaca1
 
 
         }
+        public string prikaziKandidata()
+        {
+            return "Broj osvojenih glasova za kandidata: " + Ime + " " + Prezime + " je: " + BrojGlasova + ", a procenat osvojenih glasova je: " + ProcenatGlasova + "%.";
+        }
 
         public void prikaziProsleStranke()
         {

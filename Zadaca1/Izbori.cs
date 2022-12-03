@@ -93,12 +93,15 @@ namespace Zadaca1
 		{  foreach(Stranka stranka in Stranke)
 			{
 				foreach(Kandidat kandidat in stranka.Kandidati)
-				{  if(stranka.BrojGlasova != 0)
-					kandidat.ProcenatGlasova = kandidat.BrojGlasova / (double)stranka.BrojGlasova; //resolved - Mirza
+				{  if(stranka.BrojGlasova != 0) { 
+					kandidat.ProcenatGlasova = (kandidat.BrojGlasova / (double)stranka.BrojGlasova)*100; //resolved - Mirza
+
+						}
 				}
 
 			}
 		}
+		
 
 
 		public List<Kandidat> dajKandidateSaMandatom() //resolved - Bakir
@@ -116,6 +119,7 @@ namespace Zadaca1
 			}
 			return kandidatiSaMandatom;
 		}
+		
 
 		public bool identificirajGlasaca(string id) /*resolved - Ema*/
 		{ bool pronadjen = false;
@@ -204,6 +208,34 @@ namespace Zadaca1
 		{   if (odabirStranke < 1 || odabirStranke > Stranke.Count || noviKandidat < 1 || noviKandidat > Stranke[odabirStranke - 1].Kandidati.Count)
 				throw new Exception("Nevalidan odabir.");
 			Stranke[odabirStranke-1].Kandidati[noviKandidat-1].prikaziProsleStranke();
+		}
+
+		/*
+		 Potrebno je omogućiti prikaz informacija o rezultatima za sve političke stranke. Informacije o
+rezultatima za neku stranku uključuju informaciju o ukupnom broju i postotku osvojenih
+glasova, o broju osvojenih mandata i imenima i prezimenima kandidata koji su osvojili mandate
+(uključujući i informacije o broju i postotku osvojenih glasova kandidata).
+*/
+		public void prikaziRezultateZaStranku(Stranka stranka, List<Kandidat> kandidati)
+		{
+			Console.WriteLine("Rezultati za stranku: " + stranka.Naziv +  "\nUkupan broj glasova je: " + stranka.BrojGlasova
+				+ "\nPostotak osvojenih glasova je: " + stranka.ProcenatGlasova + "\nBroj osvojenih mandata je: " + kandidati.Count);
+			foreach(Kandidat kandidat in kandidati)
+				Console.WriteLine(kandidat.prikaziKandidata() + "\n");
+			Console.WriteLine("\n");
+
+		}
+		public void prikaziRezultateZaSveStranke()
+		{   List<Kandidat> mandatorni = dajKandidateSaMandatom();
+			if(mandatorni.Count == 0) { 
+				Console.WriteLine("Trenutno jos nema rezultata.");
+				return;
+				}
+			foreach(Stranka stranka in Stranke) { 
+				List<Kandidat> mandatorniIzStranke = mandatorni.FindAll(k => string.Equals(k.Stranka.Naziv, stranka.Naziv));
+
+				prikaziRezultateZaStranku(stranka, mandatorniIzStranke);
+			}
 		}
 	}
 }
