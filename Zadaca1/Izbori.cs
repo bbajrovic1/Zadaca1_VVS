@@ -16,7 +16,8 @@ namespace Zadaca1
 			
 		}
 		public Izbori(List<Stranka> stranke, List<Kandidat> nezavisniKandidati, List<Glasac> glasaci)
-		{ Stranke = stranke;
+		{	
+			Stranke = stranke;
 			NezavisniKandidati = nezavisniKandidati;
 			Glasaci = glasaci;
 			BrojIzlazaka = 0;
@@ -210,12 +211,7 @@ namespace Zadaca1
 			Stranke[odabirStranke-1].Kandidati[noviKandidat-1].prikaziProsleStranke();
 		}
 
-		/*
-		 Potrebno je omogućiti prikaz informacija o rezultatima za sve političke stranke. Informacije o
-rezultatima za neku stranku uključuju informaciju o ukupnom broju i postotku osvojenih
-glasova, o broju osvojenih mandata i imenima i prezimenima kandidata koji su osvojili mandate
-(uključujući i informacije o broju i postotku osvojenih glasova kandidata).
-*/
+
 		public void prikaziRezultateZaStranku(Stranka stranka, List<Kandidat> kandidati)
 		{
 			Console.WriteLine("Rezultati za stranku: " + stranka.Naziv +  "\nUkupan broj glasova je: " + stranka.BrojGlasova
@@ -236,6 +232,13 @@ glasova, o broju osvojenih mandata i imenima i prezimenima kandidata koji su osv
 
 				prikaziRezultateZaStranku(stranka, mandatorniIzStranke);
 			}
+		}
+
+		public void prikaziRezultateRukovodstvaZaStranku(int odabirStranke)
+        {
+			if (odabirStranke < 1 || odabirStranke > Stranke.Count)
+				throw new Exception("Nevalidan odabir.");
+			Stranke[odabirStranke - 1].prikaziGlasoveKandidataURukovodstvu();
 		}
 	}
 }

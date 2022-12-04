@@ -12,28 +12,28 @@ namespace Zadaca1
            Stranka stranka2 = new Stranka("SDP");
            Stranka stranka3 = new Stranka("NIP");
            Stranka stranka4 = new Stranka("DF");
-
-           Kandidat kandidat1_1 = new Kandidat("Elma", "Elmic", "1112967", stranka1);
-           Kandidat kandidat1_2 = new Kandidat("Husein", "Husic", "2102991", stranka1);
-           Kandidat kandidat2_1 = new Kandidat("Bakir", "Semic", "3109001", stranka2);
-           Kandidat kandidat2_2 = new Kandidat("Selma", "Suljic", "4109977", stranka2);
-           Kandidat kandidat3_1 = new Kandidat("Adnan", "Adic", "5107967", stranka3);
-           Kandidat kandidat3_2 = new Kandidat("Toni", "Senic", "6106997", stranka3);
-           Kandidat kandidat4_1 = new Kandidat("Mia", "Santic", "7105957", stranka4);
-           Kandidat kandidat4_2 = new Kandidat("Mijo", "Mijic", "8104937", stranka4);
            
+           Kandidat kandidat1_1 = new Kandidat("Elma", "Elmic", "adresa4", new DateTime(1990, 5, 3), "111J967", "0305990000000", stranka1, true);
+           Kandidat kandidat1_2 = new Kandidat("Husein", "Husic", "adresa5", new DateTime(1997, 6, 23), "345K907", "2306997000000", stranka1, false);
+           Kandidat kandidat2_1 = new Kandidat("Bakir", "Semic", "adresa6", new DateTime(1990, 5, 3), "111J967", "0305990000000", stranka2, true);
+           Kandidat kandidat2_2 = new Kandidat("Selma", "Suljic", "adresa7", new DateTime(1991, 1, 3), "111J967", "0301991000000", stranka2, false);
+           Kandidat kandidat3_1 = new Kandidat("Adnan", "Adic", "adresa8", new DateTime(1992, 2, 5), "987K543", "0502992000000", stranka3, true);
+           Kandidat kandidat3_2 = new Kandidat("Toni", "Senic", "adresa9", new DateTime(1993, 3, 6), "111J961", "0603993000000", stranka3, false);
+           Kandidat kandidat4_1 = new Kandidat("Mia", "Santic", "adresa10", new DateTime(1994, 11, 6), "111J962", "0611994000000", stranka4, true);
+           Kandidat kandidat4_2 = new Kandidat("Mijo", "Mijic", "adresa11", new DateTime(1995, 12, 14), "111J963", "1412995000000", stranka4, false);
+
+
+
            
-
-
            stranka1.Kandidati = new List<Kandidat>{ kandidat1_1, kandidat1_2};
            stranka2.Kandidati = new List<Kandidat>{ kandidat2_1, kandidat2_2};
            stranka3.Kandidati = new List<Kandidat>{ kandidat3_1, kandidat3_2};
            stranka4.Kandidati = new List<Kandidat>{ kandidat4_1, kandidat4_2};
            List<Stranka> stranke = new List<Stranka>{ stranka1, stranka2, stranka3, stranka4};
            List<Kandidat> nezavisniKandidati = new List<Kandidat>{ 
-                                                new Kandidat("Samir", "Prusac", "9"),
-                                                new Kandidat("Sanela", "Emic", "10"),
-                                                new Kandidat("Antonela", "Maric", "11")};
+                                                new Kandidat("Samir", "Prusac", "adresa12", new DateTime(1995, 5, 8), "111J967", "0805995000000"),
+                                                new Kandidat("Sanela", "Emic", "adresa13", new DateTime(1996, 8, 10), "112K967", "1008996000000"),
+                                                new Kandidat("Antonela", "Maric", "adresa14", new DateTime(1997, 9, 9), "114M967", "0909997000000")};
 
             kandidat1_1.ProsleStranke = new List<Tuple<Stranka, DateTime, DateTime>> 
             { new Tuple<Stranka, DateTime, DateTime>(stranka3, new DateTime(2000, 3, 1), new DateTime(2004, 4, 2)),
@@ -60,7 +60,7 @@ namespace Zadaca1
 
             do//resolved issue - Bakir
             {
-                Console.WriteLine("Odaberi opciju:\n1. glasaj\n2. prikazi rezultate\n3. rezultati za stranke\n0 za kraj");
+                Console.WriteLine("Odaberi opciju:\n1. glasaj\n2. prikazi rezultate\n3. rezultati za stranke\n4. rezultati za rukovodstva\n0 za kraj");
                 odabir = Convert.ToInt32(Console.ReadLine());
                 if (odabir == 1)
                 {
@@ -146,6 +146,13 @@ namespace Zadaca1
                 else if (odabir == 3)
                 {
                     izbori.prikaziRezultateZaSveStranke();
+                }
+                else if (odabir == 4)
+                {
+                    Console.WriteLine("Odaberite jednu stranku: ");
+                    izbori.prikaziStranke();
+                    int odabirStranke = Convert.ToInt32(Console.ReadLine());
+                    izbori.prikaziRezultateRukovodstvaZaStranku(odabirStranke);
                 }
                 
                 else if(odabir != 0)

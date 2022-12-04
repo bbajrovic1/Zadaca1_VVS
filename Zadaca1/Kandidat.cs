@@ -3,42 +3,37 @@ using System.Collections.Generic;
 
 namespace Zadaca1
 {
-    public class Kandidat
+    public class Kandidat : Glasac
     {
-        public string Ime { get; set; }
-        public string Prezime { get; set; }
-        public string JMBG { get; set; }
         public Stranka Stranka { get; set; }
         public int BrojGlasova { get; set; }
         public double ProcenatGlasova { get; set; }
         public List<Tuple<Stranka, DateTime, DateTime>> ProsleStranke { get; set; }
-
+        public bool Rukovodstvo { get; set; }
 
         public Kandidat()
         {
+            Glasao = false;
         }
 
-
-        public Kandidat(string ime, string prezime, string maticni, Stranka stranka) // resolved - Bakir
+        public Kandidat(string ime, string prezime, string adresa, DateTime datumRodjenja, string licna, string maticni, Stranka stranka, bool rukovodstvo) : base(ime, prezime, adresa, datumRodjenja, licna, maticni)
         {
-            Ime = ime;
-            Prezime = prezime;
-            JMBG = maticni;
             Stranka = stranka;
             ProcenatGlasova = 0;
             BrojGlasova = 0;
             ProsleStranke = new List<Tuple<Stranka, DateTime, DateTime>>();
+            Rukovodstvo = rukovodstvo;
         }
 
-
-        public Kandidat(string ime, string prezime, string maticni)
+        public Kandidat(string ime, string prezime, string adresa, DateTime datumRodjenja, string licna, string maticni) : base(ime, prezime, adresa, datumRodjenja, licna, maticni)
         {
-            Ime = ime;
-            Prezime = prezime;
-            JMBG = maticni;
+            ProcenatGlasova = 0;
             BrojGlasova = 0;
             ProsleStranke = new List<Tuple<Stranka, DateTime, DateTime>>();
+            Rukovodstvo = false;
+
         }
+
 
 
         public void dodajGlas()
@@ -47,10 +42,13 @@ namespace Zadaca1
 
 
         }
+
         public string prikaziKandidata()
         {
             return "Broj osvojenih glasova za kandidata: " + Ime + " " + Prezime + " je: " + BrojGlasova + ", a procenat osvojenih glasova je: " + ProcenatGlasova + "%.";
         }
+
+        
 
         public void prikaziProsleStranke()
         {
