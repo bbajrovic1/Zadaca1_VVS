@@ -39,8 +39,11 @@ namespace Zadaca1
         public void dodajGlas()
         {
             BrojGlasova++;
+        }
 
-
+        public void oduzmiGlas()
+        {
+            BrojGlasova--;
         }
 
         public string prikaziKandidata()
@@ -52,7 +55,6 @@ namespace Zadaca1
 
         public void prikaziProsleStranke()
         {
-            //„Stranka: X, Članstvo od: Y, Članstvo do: Z“.
             if (ProsleStranke.Count == 0)
                 Console.WriteLine("Kandidat nije bio ni u jednoj stranci u proslosti.");
 

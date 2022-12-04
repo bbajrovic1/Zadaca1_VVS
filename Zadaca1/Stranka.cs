@@ -13,7 +13,7 @@ namespace Zadaca1
 		{
 			Naziv = naziv;
 			Kandidati = kandidati;
-			ProcenatGlasova = 0; //Stefani - feedback
+			ProcenatGlasova = 0;
 			BrojGlasova = 0;
 			
 
@@ -26,7 +26,7 @@ namespace Zadaca1
 			ProcenatGlasova = 0;
 
 		}
-		public void dodajGlasStranciISvimKandidatima()		//resolved - Ema
+		public void dodajGlasStranciISvimKandidatima()
 		{
 			BrojGlasova++;
 			foreach (Kandidat kandidat in Kandidati)
@@ -36,11 +36,26 @@ namespace Zadaca1
  			}
 		}
 
+		public void OduzmiGlasStranciISvimKandidatima()
+		{
+			BrojGlasova--;
+			foreach (Kandidat kandidat in Kandidati)
+			{
+				kandidat.oduzmiGlas();
+
+			}
+		}
+
 
 
 		public void dodajGlasSamoStranci()
 		{
 			BrojGlasova++;
+		}
+
+		public void oduzmiGlasSamoStranci()
+		{
+			BrojGlasova--;
 		}
 		public void prikaziKandidate()
 		{

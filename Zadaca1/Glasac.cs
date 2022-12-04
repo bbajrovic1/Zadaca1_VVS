@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace Zadaca1
 {
@@ -16,12 +17,16 @@ namespace Zadaca1
 		public string JMBG { get; set; }
 		public string ID { get; }
 		public bool Glasao { get; set; }
+		public int OdabranaStranka { get; set; }
+		public List<int> OdabraniKandidati { get; set; }
 
 		public Glasac() 
 		{
 
 			Glasao = false;
-        }
+			OdabranaStranka = 0;
+			OdabraniKandidati = new List<int>();
+		}
 
 		private bool validiraj(string ime, string prezime, string adresa, DateTime datumRodjenja, string licna, string maticni)
 		{
@@ -62,9 +67,26 @@ namespace Zadaca1
 				adresa.Substring(0, 2) + licna.Substring(0, 2) + maticni.Substring(0, 2);
 
 			Glasao= false;
+			OdabranaStranka = 0;
+			OdabraniKandidati = new List<int>();
 		}
 
 
+		public void dodajStranku(int stranka)
+        {
+			OdabranaStranka = stranka;
+        }
 
-	}
+		public void dodajKandidate(List<int> kandidati)
+        {
+			OdabraniKandidati = kandidati;
+        }
+
+        public void resetujGlasove()
+        {
+            OdabranaStranka = 0;
+			OdabraniKandidati = null;
+			Glasao = false;
+        }
+    }
 }

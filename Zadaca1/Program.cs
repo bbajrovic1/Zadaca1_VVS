@@ -5,7 +5,7 @@ namespace Zadaca1
 {
     internal class Program
     {
-        static Izbori napuni() //Merjem
+        static Izbori napuni()
         {
             
            Stranka stranka1 = new Stranka("SDA");
@@ -58,14 +58,14 @@ namespace Zadaca1
 
             int odabir;
 
-            do//resolved issue - Bakir
+            do
             {
-                Console.WriteLine("Odaberi opciju:\n1. glasaj\n2. prikazi rezultate\n3. rezultati za stranke\n4. rezultati za rukovodstva\n0 za kraj");
+                Console.WriteLine("Odaberi opciju:\n1. glasaj\n2. prikazi rezultate\n3. rezultati za stranke\n4. rezultati za rukovodstva\n5. resetuj glasaca\n0 za kraj");
                 odabir = Convert.ToInt32(Console.ReadLine());
                 if (odabir == 1)
                 {
                     string kod;
-                    do                         //resolved issue - Bakir
+                    do                         
                     {
                         Console.WriteLine("Unesi identifikacijski kod: ");
                         kod = Console.ReadLine();
@@ -74,8 +74,7 @@ namespace Zadaca1
                         else
                         {   
 
-                            //Stefani
-                            //pošto nije prava greška funkcionalnosti, da druge kolege ne bih remetila, neću mijenjati if else u switch case
+                            
                             bool glasao = false;
                             do
                             {
@@ -86,7 +85,7 @@ namespace Zadaca1
                                     Console.WriteLine("Odaberite jednu stranku: ");
                                     izbori.prikaziStranke();
                                     int odabirStranke = Convert.ToInt32(Console.ReadLine());
-                                    izbori.glasajZaStranku(odabirStranke);
+                                    izbori.glasajZaStranku(kod, odabirStranke);
                                     glasao = true;
                                 }
                                 else if (opcijaGlasanja == 2)
@@ -112,7 +111,7 @@ namespace Zadaca1
 
 
                                     } while (noviKandidat != 0);
-                                    izbori.glasajZaKandidateIzStranke(odabirStranke, odabraniKandidati);
+                                    izbori.glasajZaKandidateIzStranke(kod, odabirStranke, odabraniKandidati);
                                     glasao = true;
 
                                 }
@@ -121,16 +120,16 @@ namespace Zadaca1
                                     Console.WriteLine("Odaberite jednog nezavisnog kandidata: ");
                                     izbori.prikaziNezavisneKandidate();
                                     int odabraniNezavisni = Convert.ToInt32(Console.ReadLine());
-                                    izbori.glasajZaNezavisnog(odabraniNezavisni);
+                                    izbori.glasajZaNezavisnog(kod, odabraniNezavisni);
                                     glasao = true;
                                 }
                                 else
                                 {
-                                    Console.WriteLine("Izabrali ste nepostojecu opciju, pokusajte ponovo"); //resolved - Mirza
+                                    Console.WriteLine("Izabrali ste nepostojecu opciju, pokusajte ponovo");
                                 }
                             } while (!glasao);
                         }
-                    } while (izbori.identificirajGlasaca(kod)); // resolved - Mirza
+                    } while (izbori.identificirajGlasaca(kod));
 
 
                 }
@@ -154,10 +153,43 @@ namespace Zadaca1
                     int odabirStranke = Convert.ToInt32(Console.ReadLine());
                     izbori.prikaziRezultateRukovodstvaZaStranku(odabirStranke);
                 }
+                else if (odabir == 5)
+                {
+                    string id;
+                        Console.WriteLine("Unesi ID glasaca cije glasove zelite resetovati: ");
+                        id = Console.ReadLine();
+                        
+                        Console.WriteLine("Unesite sifru:");
+                        string sifra = Console.ReadLine();
+                        int brojGresaka = 1;
+
+                        do
+                        {
+                            if(sifra != "VVS20222023")
+                            {
+                                brojGresaka++;
+                                Console.WriteLine("Neispravna sifra, unesite ponovo:");
+                                sifra = Console.ReadLine();
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        } while (brojGresaka < 3);
+
+
+                        if (brojGresaka == 3)
+                            return;
+
+
+                        izbori.resetujGlasoveZaGlasaca(id);
+                        
+                    
+                }
                 
                 else if(odabir != 0)
                 {
-                    Console.WriteLine("Neispravna opcija, unesite ponovo\n");     //resolved issue - Ema
+                    Console.WriteLine("Neispravna opcija, unesite ponovo\n");
                 }
                 
                 

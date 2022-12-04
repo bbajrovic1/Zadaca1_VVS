@@ -23,13 +23,18 @@ namespace Zadaca1
 			BrojIzlazaka = 0;
 			
 		}
-		public void glasajZaStranku(int brojStranke) //Merjem
-		{ if(brojStranke > 0 && brojStranke <= Stranke.Count) //u suprotnom je nevazeci glasacki "listic"
-			Stranke[brojStranke - 1].dodajGlasStranciISvimKandidatima();  
+		public void glasajZaStranku(string id, int brojStranke)
+		{ 
+			if(brojStranke > 0 && brojStranke <= Stranke.Count)
+            {
+				Stranke[brojStranke - 1].dodajGlasStranciISvimKandidatima();
+				dajGlasacaPodIDem(id).dodajStranku(brojStranke);
+			}
+				
 		}
 
 
-		public void glasajZaKandidateIzStranke(int brojStranke, List<int> odabraniKandidati)//Merjem
+		public void glasajZaKandidateIzStranke(string id, int brojStranke, List<int> odabraniKandidati)
 		{  
 			if (brojStranke > 0 && brojStranke <= Stranke.Count)
 			{
@@ -39,46 +44,74 @@ namespace Zadaca1
 				{   if(i > 0 && i <= Stranke[brojStranke - 1].Kandidati.Count)
 					Stranke[brojStranke - 1].Kandidati[i - 1].dodajGlas(); 
 				}
+				dajGlasacaPodIDem(id).dodajStranku(brojStranke);
+				dajGlasacaPodIDem(id).dodajKandidate(odabraniKandidati);
+			}
+		}
+
+		public void oduzmiGlasoveZaKandidateIzStranke(int brojStranke, List<int> odabraniKandidati)
+		{
+			if (brojStranke > 0 && brojStranke <= Stranke.Count)
+			{
+				Stranke[brojStranke - 1].oduzmiGlasSamoStranci();
+
+				foreach (int i in odabraniKandidati)
+				{
+					if (i > 0 && i <= Stranke[brojStranke - 1].Kandidati.Count)
+						Stranke[brojStranke - 1].Kandidati[i - 1].oduzmiGlas();
+				}
 			}
 		}
 
 
-		public void glasajZaNezavisnog(int odabraniNezavisniKandidat)//Merjem
+		public void glasajZaNezavisnog(string id, int odabraniNezavisniKandidat)
 		{
             if (odabraniNezavisniKandidat > 0 && odabraniNezavisniKandidat <= NezavisniKandidati.Count)
-                NezavisniKandidati[odabraniNezavisniKandidat - 1].dodajGlas(); 
+            {
+				NezavisniKandidati[odabraniNezavisniKandidat - 1].dodajGlas();
+				dajGlasacaPodIDem(id).dodajKandidate(new List<int> { odabraniNezavisniKandidat });
+			}
+                
+		}
+
+		public void oduzmiGlasZaNezavisnog(int odabraniNezavisniKandidat)
+		{
+			if (odabraniNezavisniKandidat > 0 && odabraniNezavisniKandidat <= NezavisniKandidati.Count)
+			{
+				NezavisniKandidati[odabraniNezavisniKandidat - 1].oduzmiGlas();
+			}
 
 		}
 
-		
-		public double izracunajIzlaznost()	//resolved - Bakir
+
+		public double izracunajIzlaznost()
 		{ if (Glasaci.Count == 0) return 0;
-			BrojIzlazaka = 0;				/*resolved - Bakir*/
+			BrojIzlazaka = 0;				
 			foreach (Glasac glasac in Glasaci)
 			{
 				if (glasac.Glasao == true)
 					BrojIzlazaka++;
 			}
 
-			return ((double)BrojIzlazaka / Glasaci.Count) * 100; /*resolved - Bakir*/
+			return ((double)BrojIzlazaka / Glasaci.Count) * 100; 
 
         }
 
 
-        public void izracunajProcenteGlasovaZaStranke() // resolved issue - Ema
+        public void izracunajProcenteGlasovaZaStranke() 
         {	izracunajIzlaznost();
 			if (BrojIzlazaka == 0) return;
 			foreach (Stranka stranka in Stranke)
 			{
-				stranka.ProcenatGlasova = (stranka.BrojGlasova / (double)BrojIzlazaka) * 100; // Merjem: Zahtjev za pregled: dijeljenje s nulom nije provjereno
-		    											/*resolved - Ema*/
+				stranka.ProcenatGlasova = (stranka.BrojGlasova / (double)BrojIzlazaka) * 100; 
+		    											
 			}
 		}
 
 
-		public List<Stranka> dajStrankeSaMandatom() //Stefani
+		public List<Stranka> dajStrankeSaMandatom() 
 		{
-			//resolved - Ema
+			
 			izracunajProcenteGlasovaZaStranke();
             List<Stranka> mandatorne = new List<Stranka>();
 			if (BrojIzlazaka == 0) return mandatorne;
@@ -90,14 +123,14 @@ namespace Zadaca1
 		}
 
 
-		public void izracunajProcenteGlasovaZaKandidate() //Mirza
+		public void izracunajProcenteGlasovaZaKandidate() 
 		{  foreach(Stranka stranka in Stranke)
 			{
 				foreach(Kandidat kandidat in stranka.Kandidati)
 				{  if(stranka.BrojGlasova != 0) { 
-					kandidat.ProcenatGlasova = (kandidat.BrojGlasova / (double)stranka.BrojGlasova)*100; //resolved - Mirza
+					kandidat.ProcenatGlasova = (kandidat.BrojGlasova / (double)stranka.BrojGlasova)*100; 
 
-						}
+					}
 				}
 
 			}
@@ -105,7 +138,7 @@ namespace Zadaca1
 		
 
 
-		public List<Kandidat> dajKandidateSaMandatom() //resolved - Bakir
+		public List<Kandidat> dajKandidateSaMandatom() 
 		{
 			List<Stranka> mandatorne = dajStrankeSaMandatom();
 			izracunajProcenteGlasovaZaKandidate();
@@ -122,7 +155,7 @@ namespace Zadaca1
 		}
 		
 
-		public bool identificirajGlasaca(string id) /*resolved - Ema*/
+		public bool identificirajGlasaca(string id) 
 		{ bool pronadjen = false;
 			foreach(Glasac glasac in Glasaci)
 			{
@@ -130,13 +163,23 @@ namespace Zadaca1
 				{
 					pronadjen = true;
 					glasac.Glasao = true;
-					break; /*resolved - Ema*/
+					break; 
 				}
 			}
 			return pronadjen;
 		}
 
-		public void prikaziStranke() //Stefani - feedback
+		public Glasac dajGlasacaPodIDem(string id)
+        {
+			foreach(Glasac glasac in Glasaci)
+            {
+				if (glasac.ID == id)
+					return glasac;
+            }
+			return null;
+        }
+
+		public void prikaziStranke() 
 		{ int i = 1;
 			foreach(Stranka stranka in Stranke)
 			{ Console.WriteLine(i + ". " + stranka.Naziv + Environment.NewLine);
@@ -145,7 +188,7 @@ namespace Zadaca1
 		}
 
 
-		public void prikaziKandidateIzStranke(int brojStranke) //Mirza
+		public void prikaziKandidateIzStranke(int brojStranke) 
 		{
 			if (brojStranke < 0 || brojStranke >= Stranke.Count)
 				throw new Exception("Nevalidan broj stranke.");
@@ -153,24 +196,24 @@ namespace Zadaca1
 			int i = 1;
 			foreach(Kandidat kandidat in odabrana.Kandidati)
 			{
-				Console.WriteLine(i + ". " + kandidat.Ime + " " + kandidat.Prezime + " " + kandidat.JMBG.Substring(4, 3) + "\n"); //resolved - Mirza
+				Console.WriteLine(i + ". " + kandidat.Ime + " " + kandidat.Prezime + " " + kandidat.JMBG.Substring(4, 3) + "\n");
 				i++;
 			}
 
 		}
 
 
-		public void prikaziNezavisneKandidate() //Merjem
+		public void prikaziNezavisneKandidate() 
 		{ int i = 1;
 			foreach(Kandidat kandidat in NezavisniKandidati)
 			{
-				Console.WriteLine(i + ". " + kandidat.Ime + " " + kandidat.Prezime + "\n"); //Merjem: Zahtjev za pregled: Bilo bi ljepse koristiti neke naprednije metode sa lambda funkcijama
+				Console.WriteLine(i + ". " + kandidat.Ime + " " + kandidat.Prezime + "\n"); 
 				i++;
 			}
 		}
 
 
-		public void ispisiMandatorneStranke() //resolved - Bakir
+		public void ispisiMandatorneStranke() 
 		{
 			List<Stranka> mandatorne = dajStrankeSaMandatom();
 			foreach(Stranka stranka in mandatorne)
@@ -178,7 +221,7 @@ namespace Zadaca1
 		}
 
 
-		public void ispisiKandidateSaMandatima() //resolved - Ema
+		public void ispisiKandidateSaMandatima() 
 		{
 			List<Kandidat> mandatorni = dajKandidateSaMandatom();
 			foreach(Kandidat kandidat in mandatorni)
@@ -239,6 +282,27 @@ namespace Zadaca1
 			if (odabirStranke < 1 || odabirStranke > Stranke.Count)
 				throw new Exception("Nevalidan odabir.");
 			Stranke[odabirStranke - 1].prikaziGlasoveKandidataURukovodstvu();
+		}
+
+		public void resetujGlasoveZaGlasaca(string id)
+        {
+			Glasac glasac = dajGlasacaPodIDem(id);
+			if(glasac.OdabranaStranka != 0 && glasac.OdabraniKandidati == null)
+            {
+				Stranke[glasac.OdabranaStranka - 1].OduzmiGlasStranciISvimKandidatima();
+			}
+			else if(glasac.OdabranaStranka != 0 && glasac.OdabraniKandidati != null)
+            {
+				oduzmiGlasoveZaKandidateIzStranke(glasac.OdabranaStranka, glasac.OdabraniKandidati);
+            }
+			else if(glasac.OdabranaStranka == 0 && glasac.OdabraniKandidati != null)
+            {
+                oduzmiGlasZaNezavisnog(glasac.OdabraniKandidati[0]);
+            }
+
+
+			glasac.resetujGlasove();
+
 		}
 	}
 }
