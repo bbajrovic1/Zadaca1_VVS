@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Glasaci>
+	<Glasac>
+		<Ime>ime</Ime>
+		<Prezime>pr</Prezime>
+		<Adresa>adresa 123</Adresa>
+		<DatumRodjenja>09/02/2000</DatumRodjenja>
+		<Licna>999E999</Licna>
+		<Maticni>0902000144036</Maticni>
+	</Glasac>
+	<Glasac>
+		<Ime>ime</Ime>
+		<Prezime>SveličneinformacijeoglasačimatrebajubitivalidiraneImeiprezimesmijusadržavatisamoslova</Prezime>
+		<Adresa>adresa 123</Adresa>
+		<DatumRodjenja>09/02/2000</DatumRodjenja>
+		<Licna>999E999</Licna>
+		<Maticni>0902000144036</Maticni>
+	</Glasac>
+</Glasaci>

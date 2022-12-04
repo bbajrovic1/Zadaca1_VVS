@@ -30,10 +30,11 @@ namespace Zadaca1
 
 		private bool validiraj(string ime, string prezime, string adresa, DateTime datumRodjenja, string licna, string maticni)
 		{
+			//FUNKCIONALNOST PISALA STEFANI KECMAN
 			int brojSlovaIme = ime.ToCharArray().Count(c => Char.IsLetter(c));
 			int brojSlovaPrezime = prezime.ToCharArray().Count(c => Char.IsLetter(c));
 
-            if (!Regex.IsMatch(ime, "[a-z|A-Z|-]+") || !Regex.IsMatch(prezime, "[a-z|A-Z|-]+") ||
+            if (!Regex.IsMatch(ime, "[a-z|A-Z|-]+") || !Regex.IsMatch(prezime, "[a-zA-Z|-]+") ||
                 brojSlovaIme < 2 || brojSlovaIme > 40 || brojSlovaPrezime < 3 || brojSlovaPrezime > 50)
 				return false;
 			DateTime datum18 = DateTime.Now.AddYears(-18);
