@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Glasaci>
+	<Glasac>
+		<Ime>Dino</Ime>
+		<Prezime>Dinic</Prezime>
+		<Adresa>adresa1</Adresa>
+		<DatumRodjenja>04/12/1988</DatumRodjenja>
+		<Licna>111E222</Licna>
+		<Maticni>0412988000000</Maticni>
+		<OdabranaStranka>2</OdabranaStranka>
+		<OdabraniKandidati>
+			<Kandidati>1</Kandidati>
+			<Kandidati>2</Kandidati>
+		</OdabraniKandidati>
+	</Glasac>
+	<Glasac>
+		<Ime>Anela</Ime>
+		<Prezime>Anic</Prezime>
+		<Adresa>adresa2</Adresa>
+		<DatumRodjenja>02/04/1990</DatumRodjenja>
+		<Licna>123E222</Licna>
+		<Maticni>0204990111111</Maticni>
+		<OdabranaStranka>3</OdabranaStranka>
+		<OdabraniKandidati>
+			<Kandidati>1</Kandidati>
+			<Kandidati>2</Kandidati>
+			<Kandidati>3</Kandidati>
+			<Kandidati>4</Kandidati>
+		</OdabraniKandidati>
+	</Glasac>
+</Glasaci>

@@ -46,7 +46,7 @@ namespace Test_Zadaca2_VVS
         {
             //popraviti regex
             DateTime dt1 = new DateTime(2000, 02, 09);
-            Glasac g1 = new Glasac(".", "prezime", "adresa 123", dt1, "999E999", "0902000144036");
+            Glasac g1 = new Glasac(".ime12", "prezime", "adresa 123", dt1, "999E999", "0902000144036");
 
         }
 
