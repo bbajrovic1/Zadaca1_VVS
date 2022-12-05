@@ -277,11 +277,11 @@ namespace Zadaca1
 			}
 		}
 
-		public void prikaziRezultateRukovodstvaZaStranku(int odabirStranke)
+		public string prikaziRezultateRukovodstvaZaStranku(int odabirStranke)
         {
 			if (odabirStranke < 1 || odabirStranke > Stranke.Count)
 				throw new Exception("Nevalidan odabir.");
-			Stranke[odabirStranke - 1].prikaziGlasoveKandidataURukovodstvu();
+			return Stranke[odabirStranke - 1].prikaziGlasoveKandidataURukovodstvu();
 		}
 
 		public void resetujGlasoveZaGlasaca(string id)

@@ -151,7 +151,7 @@ namespace Zadaca1
                     Console.WriteLine("Odaberite jednu stranku: ");
                     izbori.prikaziStranke();
                     int odabirStranke = Convert.ToInt32(Console.ReadLine());
-                    izbori.prikaziRezultateRukovodstvaZaStranku(odabirStranke);
+                    Console.WriteLine(izbori.prikaziRezultateRukovodstvaZaStranku(odabirStranke));
                 }
                 else if (odabir == 5)
                 {

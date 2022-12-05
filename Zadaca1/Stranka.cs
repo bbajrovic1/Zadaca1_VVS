@@ -67,21 +67,23 @@ namespace Zadaca1
 			}
 		}
 
-		public void prikaziGlasoveKandidataURukovodstvu()
+		public string prikaziGlasoveKandidataURukovodstvu()
         {
 			int brGlasova = 0;
+			string s = "";
 			foreach (Kandidat kandidat in Kandidati)
             {
 				if (kandidat.Rukovodstvo)
 					brGlasova += kandidat.BrojGlasova;
             }
-			Console.WriteLine("Ukupan broj glasova: " + brGlasova);
-			Console.WriteLine("Kandidati:");
+			s = s + "Ukupan broj glasova: " + brGlasova + "\n";
+			s += "Kandidati:\n";
 			foreach (Kandidat kandidat in Kandidati)
 			{
 				if (kandidat.Rukovodstvo)
-					Console.WriteLine("ID: " + kandidat.ID);
+					s = s + "ID: " + kandidat.ID + "\n";
 			}
+			return s;
 		}
 		
 	}
