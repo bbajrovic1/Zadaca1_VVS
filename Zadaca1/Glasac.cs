@@ -34,15 +34,42 @@ namespace Zadaca1
 			int brojSlovaIme = ime.ToCharArray().Count(c => Char.IsLetter(c));
 			int brojSlovaPrezime = prezime.ToCharArray().Count(c => Char.IsLetter(c));
 
-            if (!Regex.IsMatch(ime, "[a-z|A-Z|-]+") || !Regex.IsMatch(prezime, "[a-z|A-Z|-]+") ||
-                brojSlovaIme < 2 || brojSlovaIme > 40 || brojSlovaPrezime < 3 || brojSlovaPrezime > 50)
+			
+            if (brojSlovaIme < 2 || brojSlovaIme > 40 || brojSlovaPrezime < 3 || brojSlovaPrezime > 50)
 				return false;
-			DateTime datum18 = DateTime.Now.AddYears(-18);
+			//proci petljom i provjeriti karaktere za ime i prezime
+
+			for (int i =0; i<ime.Length; i++)
+			{
+				if (!((ime[i] >= 'a' && ime[i] <= 'z') || (ime[i] >= 'A' && ime[i] <= 'Z') || ime[i] == '-')) return false;
+			}
+
+            for (int i = 0; i < prezime.Length; i++)
+            {
+                if (!((prezime[i] >= 'a' && prezime[i] <= 'z') || (prezime[i] >= 'A' && prezime[i] <= 'Z') || prezime[i] == '-')) return false;
+            }
+
+            DateTime datum18 = DateTime.Now.AddYears(-18);
 			if (datumRodjenja > DateTime.Now || datumRodjenja > datum18) 
 				return false;
-			if (licna.Length != 7 || !Regex.IsMatch(licna, "[0-9]{3}E|J|K|M|T[0-9]{3}"))
+			
+			if (licna.Length!=7)
 				return false;
-			string dan = datumRodjenja.Day.ToString();
+
+			//proci petljom i provjeriti karaktere licne
+
+			for (int i=0; i<3; i++)
+			{
+				if (!(licna[i] >= '0' && licna[i] <= '9')) return false;
+			}
+			if (licna[3] != 'E' && licna[3] != 'J' && licna[3] != 'K' && licna[3] != 'M' && licna[3] != 'T') return false;
+
+			for (int i=4; i<7; i++)
+            {
+                if (!(licna[i] >= '0' && licna[i] <= '9')) return false;
+            }
+
+            string dan = datumRodjenja.Day.ToString();
 			if (dan.Length == 1) dan = "0" + dan;
 
 			string mjesec = datumRodjenja.Month.ToString();
