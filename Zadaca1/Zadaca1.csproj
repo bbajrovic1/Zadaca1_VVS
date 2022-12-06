@@ -9,6 +9,12 @@
     <None Update="XMLFile1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+	<None Update="XMLFile2.xml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</None>
+	<None Update="XMLFile3.xml">
+		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</None>
   </ItemGroup>
 
 </Project>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Zadaca1
 {
-    public class Kandidat : Glasac
+    public class Kandidat : Glasac //kandidat naslijedjen iz glasaca u svrhu funkcionalnosti 4 - Bakir Bajrovic
     {
         public Stranka Stranka { get; set; }
         public int BrojGlasova { get; set; }
@@ -15,7 +15,8 @@ namespace Zadaca1
         {
             Glasao = false;
         }
-
+        
+        //dodana varijabla rukovodstvo za obicnog kandidata i za nezavisnog za kojeg je uvijek false - funkcionalnost 4, Bakir Bajrovic
         public Kandidat(string ime, string prezime, string adresa, DateTime datumRodjenja, string licna, string maticni, Stranka stranka, bool rukovodstvo) : base(ime, prezime, adresa, datumRodjenja, licna, maticni)
         {
             Stranka = stranka;
@@ -40,7 +41,7 @@ namespace Zadaca1
         {
             BrojGlasova++;
         }
-
+        //FUNKCIONALNOST 5 -EMA MEKIC
         public void oduzmiGlas()
         {
             BrojGlasova--;

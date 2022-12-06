@@ -8,10 +8,7 @@
 		<Licna>111E222</Licna>
 		<Maticni>0412988000000</Maticni>
 		<OdabranaStranka>2</OdabranaStranka>
-		<OdabraniKandidati>
-			<Kandidati>1</Kandidati>
-			<Kandidati>2</Kandidati>
-		</OdabraniKandidati>
+		<OdabraniKandidati>1</OdabraniKandidati>
 	</Glasac>
 	<Glasac>
 		<Ime>Anela</Ime>
@@ -21,11 +18,6 @@
 		<Licna>123E222</Licna>
 		<Maticni>0204990111111</Maticni>
 		<OdabranaStranka>3</OdabranaStranka>
-		<OdabraniKandidati>
-			<Kandidati>1</Kandidati>
-			<Kandidati>2</Kandidati>
-			<Kandidati>3</Kandidati>
-			<Kandidati>4</Kandidati>
-		</OdabraniKandidati>
+		<OdabraniKandidati>2</OdabraniKandidati>
 	</Glasac>
 </Glasaci>

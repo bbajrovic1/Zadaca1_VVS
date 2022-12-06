@@ -153,6 +153,7 @@ namespace Zadaca1
                     int odabirStranke = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine(izbori.prikaziRezultateRukovodstvaZaStranku(odabirStranke));
                 }
+                //FUNKCIONALNOST 5 - EMA MEKIC
                 else if (odabir == 5)
                 {
                     string id;

@@ -35,7 +35,7 @@ namespace Zadaca1
 
  			}
 		}
-
+		//FUNKCIONALNOST 5 -EMA MEKIC
 		public void OduzmiGlasStranciISvimKandidatima()
 		{
 			BrojGlasova--;
@@ -53,6 +53,7 @@ namespace Zadaca1
 			BrojGlasova++;
 		}
 
+		//FUNKCIONALNOST 5 -EMA MEKIC
 		public void oduzmiGlasSamoStranci()
 		{
 			BrojGlasova--;
@@ -66,7 +67,8 @@ namespace Zadaca1
 				i++;
 			}
 		}
-
+		
+		//FUNKCIONALNOST 4 - Bakir Bajrovic
 		public string prikaziGlasoveKandidataURukovodstvu()
         {
 			int brGlasova = 0;

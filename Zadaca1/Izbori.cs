@@ -49,6 +49,7 @@ namespace Zadaca1
 			}
 		}
 
+		//FUNKCIONALNOST 5 -EMA MEKIC
 		public void oduzmiGlasoveZaKandidateIzStranke(int brojStranke, List<int> odabraniKandidati)
 		{
 			if (brojStranke > 0 && brojStranke <= Stranke.Count)
@@ -74,6 +75,7 @@ namespace Zadaca1
                 
 		}
 
+		//FUNKCIONALNOST 5 -EMA MEKIC
 		public void oduzmiGlasZaNezavisnog(int odabraniNezavisniKandidat)
 		{
 			if (odabraniNezavisniKandidat > 0 && odabraniNezavisniKandidat <= NezavisniKandidati.Count)
@@ -169,6 +171,7 @@ namespace Zadaca1
 			return pronadjen;
 		}
 
+		//FUNKCIONALNOST 5 -EMA MEKIC
 		public Glasac dajGlasacaPodIDem(string id)
         {
 			foreach(Glasac glasac in Glasaci)
@@ -277,10 +280,11 @@ namespace Zadaca1
 			}
 		}
 
+		//FUNKCIONALNOST 4 - Bakir Bajrovic
 		public string prikaziRezultateRukovodstvaZaStranku(int odabirStranke)
         {
 			if (odabirStranke < 1 || odabirStranke > Stranke.Count)
-				throw new Exception("Nevalidan odabir.");
+				throw new Exception("Nevalidan odabir.");  
 			return Stranke[odabirStranke - 1].prikaziGlasoveKandidataURukovodstvu();
 		}
 

@@ -110,6 +110,7 @@ namespace Zadaca1
 			OdabraniKandidati = kandidati;
         }
 
+		//FUNKCIONALNOST 5 -EMA MEKIC
         public void resetujGlasove()
         {
             OdabranaStranka = 0;

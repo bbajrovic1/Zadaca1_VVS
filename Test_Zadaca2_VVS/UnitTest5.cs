@@ -7,7 +7,7 @@ using Zadaca1;
 namespace Test_Zadaca2_VVS
 {
     [TestClass]
-    public class Funkcionalnost5Test
+    public class Funkcionalnost5Test //testirala Ema Mekic
     {
 
 
@@ -228,7 +228,7 @@ namespace Test_Zadaca2_VVS
         }
 
 
-        /*
+        
         //eksterni podaci
         public static IEnumerable<object[]> UcitajPodatkeXML()
         {
@@ -242,7 +242,7 @@ namespace Test_Zadaca2_VVS
                     elements.Add(innerNode.InnerText);
                 }
 
-                yield return new object[] { elements[0], elements[1], elements[2], DateTime.Parse(elements[3]), elements[4], elements[5], elements[6],  };
+                yield return new object[] { elements[0], elements[1], elements[2], DateTime.Parse(elements[3]), elements[4], elements[5], elements[6], elements[7] };
             }
         }
 
@@ -258,19 +258,19 @@ namespace Test_Zadaca2_VVS
 
         [TestMethod]
         [DynamicData("GlasaciXML")]
-        [ExpectedException(typeof(Exception))]
-        public void TestKonstruktoraGlasacaXML(string ime, string prezime, string adresa, DateTime datumRodjenja, string licna, string maticni, int odabranaStranka, List<int> odabraniKandidati)
+        public void TestKonstruktoraGlasacaXML(string ime, string prezime, string adresa, DateTime datumRodjenja, string licna, string maticni, string odabranaStranka, string odabraniKandidati)
         {
             Glasac glasac = new Glasac(ime, prezime, adresa, datumRodjenja, licna, maticni);
-            glasac.OdabranaStranka = odabranaStranka;
-            glasac.OdabraniKandidati = odabraniKandidati;
+            glasac.OdabranaStranka = int.Parse(odabranaStranka);
+            glasac.OdabraniKandidati = new List<int>();
+            glasac.OdabraniKandidati.Add(int.Parse(odabraniKandidati));
             glasac.Glasao = true;
             glasac.resetujGlasove();
             Assert.AreEqual(glasac.OdabranaStranka, 0);
             Assert.IsNull(glasac.OdabraniKandidati);
             Assert.IsFalse(glasac.Glasao);
         }
-        */
+        
     }
         
 }
