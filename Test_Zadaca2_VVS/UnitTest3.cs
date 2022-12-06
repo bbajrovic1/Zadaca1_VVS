@@ -9,53 +9,35 @@ namespace Test_Zadaca2_VVS
     [TestClass]
     public class UnitTest3
     {
-        static Izbori izbori;
-        static Kandidat kandidat1_1;
-        static Kandidat kandidat1_2;
-        static Kandidat kandidat2_1;
-        static Kandidat kandidat2_2;
-        static Kandidat kandidat3_1;
-        static Kandidat kandidat3_2;
-        static Stranka stranka1;
-        static Stranka stranka2;
-        static Stranka stranka3;
-
-        [TestInitialize]
-        public void Initialize()
-        {
-            stranka1 = new Stranka("SDA");
-            stranka2 = new Stranka("SDP");
-            stranka3 = new Stranka("NIP");
-
-            kandidat1_1 = new Kandidat("Elma", "Elmic", "adresa4", new DateTime(1990, 5, 3), "111J967", "0305990000000", stranka1, true);
-            kandidat1_2 = new Kandidat("Husein", "Husic", "adresa5", new DateTime(1997, 6, 23), "345K907", "2306997000000", stranka1, false);
-            kandidat2_1 = new Kandidat("Bakir", "Semic", "adresa6", new DateTime(1990, 5, 3), "111J967", "0305990000000", stranka2, true);
-            kandidat2_2 = new Kandidat("Selma", "Suljic", "adresa7", new DateTime(1991, 1, 3), "111J967", "0301991000000", stranka2, false);
-            kandidat3_1 = new Kandidat("Adnan", "Adic", "adresa8", new DateTime(1992, 2, 5), "987K543", "0502992000000", stranka3, true);
-            kandidat3_2 = new Kandidat("Toni", "Senic", "adresa9", new DateTime(1993, 3, 6), "111J961", "0603993000000", stranka3, false);
-
-
-            stranka1.Kandidati = new List<Kandidat> { kandidat1_1, kandidat1_2 };
-            stranka2.Kandidati = new List<Kandidat> { kandidat2_1, kandidat2_2 };
-            stranka3.Kandidati = new List<Kandidat> { kandidat3_1, kandidat3_2 };
-            List<Stranka> stranke = new List<Stranka> { stranka1, stranka2, stranka3};
-            List<Kandidat> nezavisniKandidati = new List<Kandidat>{
-                                                new Kandidat("Samir", "Prusac", "adresa12", new DateTime(1995, 5, 8), "111J967", "0805995000000"),
-                                                new Kandidat("Sanela", "Emic", "adresa13", new DateTime(1996, 8, 10), "112K967", "1008996000000"),
-                                                new Kandidat("Antonela", "Maric", "adresa14", new DateTime(1997, 9, 9), "114M967", "0909997000000")};
-
-            List<Glasac> glasaci = new List<Glasac>{
-               new Glasac("Dino", "Dinic", "adresa1", new DateTime(1988, 12, 4), "111E222", "0412988000000"),
-               new Glasac("Anela", "Anic", "adresa2", new DateTime(1990, 4, 2), "123E222", "0204990111111"),
-               new Glasac("Sabina", "Sabic", "adresa3", new DateTime(1979, 2, 8), "333E222", "0802979333333")
-           };
-
-            izbori = new Izbori(stranke, nezavisniKandidati, glasaci);
-        }
 
         [TestMethod]
         public void TestBezMandatornih()
         {
+            Stranka stranka1 = new Stranka("SDA");
+            Stranka stranka2 = new Stranka("SDP");
+            Kandidat kandidat1 = new Kandidat("Elma", "Elmic", "adresa4", new DateTime(1990, 5, 3), "111J967", "0305990000000", stranka1, true);
+            Kandidat kandidat2 = new Kandidat("Husein", "Husic", "adresa5", new DateTime(1997, 6, 23), "345K907", "2306997000000", stranka1, false);
+            Kandidat kandidat3 = new Kandidat("Bakir", "Semic", "adresa6", new DateTime(1990, 5, 3), "111J967", "0305990000000", stranka1, true);
+            Kandidat kandidat4 = new Kandidat("Selma", "Suljic", "adresa7", new DateTime(1991, 1, 3), "111J967", "0301991000000", stranka2, false);
+
+            stranka1.Kandidati = new List<Kandidat> { kandidat1, kandidat2 };
+            stranka2.Kandidati = new List<Kandidat> { kandidat3, kandidat4 };
+
+
+            List<Stranka> stranke = new List<Stranka> { stranka1, stranka2 };
+
+            List<Glasac> glasaci = new List<Glasac>{
+               new Glasac("Dino", "Dinic", "adresa1", new DateTime(1988, 12, 4), "111E222", "0412988000000"),
+               new Glasac("Anela", "Anic", "adresa2", new DateTime(1990, 4, 2), "123E222", "0204990111111"),
+               new Glasac("Sabina", "Sabic", "adresa3", new DateTime(1979, 2, 8), "333E222", "0802979333333"),
+               new Glasac("Dina", "Dinic", "adresa4", new DateTime(1988, 12, 4), "111E333", "0412988000000"),
+               new Glasac("Amela", "Anic", "adresa5", new DateTime(1990, 4, 2), "123E444", "0204990111110"),
+               new Glasac("Sanina", "Sabic", "adresa6", new DateTime(1979, 2, 8), "333E555", "0802979333330")
+           };
+            
+
+            Izbori izbori = new Izbori(stranke, null, glasaci);
+
             List<Kandidat> mandatorni = izbori.dajKandidateSaMandatom();
             Assert.AreEqual(mandatorni.Count, 0);
         }
@@ -63,12 +45,36 @@ namespace Test_Zadaca2_VVS
         [TestMethod]
         public void TestIspisaBrojaMandatornih()
         {
-            kandidat1_1.BrojGlasova = 10;
-            kandidat1_2.BrojGlasova = 20;
-            kandidat2_1.BrojGlasova = 5;
+            Stranka stranka1 = new Stranka("SDA");
+            Stranka stranka2 = new Stranka("SDP");
+            Kandidat kandidat1 = new Kandidat("Elma", "Elmic", "adresa4", new DateTime(1990, 5, 3), "111J967", "0305990000000", stranka1, true);
+            Kandidat kandidat2 = new Kandidat("Husein", "Husic", "adresa5", new DateTime(1997, 6, 23), "345K907", "2306997000000", stranka1, false);
+            Kandidat kandidat3 = new Kandidat("Bakir", "Semic", "adresa6", new DateTime(1990, 5, 3), "111J967", "0305990000000", stranka1, true);
+            Kandidat kandidat4 = new Kandidat("Selma", "Suljic", "adresa7", new DateTime(1991, 1, 3), "111J967", "0301991000000", stranka2, false);
 
-            stranka1.BrojGlasova = 30;
-            stranka2.BrojGlasova = 5;
+            kandidat1.BrojGlasova = 3;
+            kandidat2.BrojGlasova = 2;
+            kandidat3.BrojGlasova = 0;
+            kandidat4.BrojGlasova = 1;
+
+            stranka1.Kandidati = new List<Kandidat> { kandidat1, kandidat2 };
+            stranka2.Kandidati = new List<Kandidat> { kandidat3, kandidat4 };
+            stranka1.BrojGlasova = 6;
+            stranka2.BrojGlasova = 1;
+
+            List<Stranka> stranke = new List<Stranka> { stranka1, stranka2 };
+
+            List<Glasac> glasaci = new List<Glasac>{
+               new Glasac("Dino", "Dinic", "adresa1", new DateTime(1988, 12, 4), "111E222", "0412988000000"),
+               new Glasac("Anela", "Anic", "adresa2", new DateTime(1990, 4, 2), "123E222", "0204990111111"),
+               new Glasac("Sabina", "Sabic", "adresa3", new DateTime(1979, 2, 8), "333E222", "0802979333333"),
+               new Glasac("Dina", "Dinic", "adresa4", new DateTime(1988, 12, 4), "111E333", "0412988000000"),
+               new Glasac("Amela", "Anic", "adresa5", new DateTime(1990, 4, 2), "123E444", "0204990111110"),
+               new Glasac("Sanina", "Sabic", "adresa6", new DateTime(1979, 2, 8), "333E555", "0802979333330")
+           };
+            glasaci[0].Glasao = true; glasaci[1].Glasao = true; glasaci[2].Glasao = true; glasaci[3].Glasao = true; glasaci[4].Glasao = true; glasaci[5].Glasao = true;
+
+            Izbori izbori = new Izbori(stranke, null, glasaci);
 
             List<Kandidat> mandatorni = izbori.dajKandidateSaMandatom();
             Assert.AreEqual(mandatorni.Count, 3);
@@ -77,43 +83,122 @@ namespace Test_Zadaca2_VVS
         [TestMethod]
         public void TestRacunanjaProcentaGlasova()
         {
-            kandidat1_1.BrojGlasova = 5;
-            kandidat1_2.BrojGlasova = 5;
-            kandidat2_1.BrojGlasova = 10;
+            Stranka stranka1 = new Stranka("SDA");
+            Stranka stranka2 = new Stranka("SDP");
+            Kandidat kandidat1 = new Kandidat("Elma", "Elmic", "adresa4", new DateTime(1990, 5, 3), "111J967", "0305990000000", stranka1, true);
+            Kandidat kandidat2 = new Kandidat("Husein", "Husic", "adresa5", new DateTime(1997, 6, 23), "345K907", "2306997000000", stranka1, false);
+            Kandidat kandidat3 = new Kandidat("Bakir", "Semic", "adresa6", new DateTime(1990, 5, 3), "111J967", "0305990000000", stranka1, true);
+            Kandidat kandidat4 = new Kandidat("Selma", "Suljic", "adresa7", new DateTime(1991, 1, 3), "111J967", "0301991000000", stranka2, false);
 
-            stranka1.BrojGlasova = 10;
-            stranka2.BrojGlasova = 10;
+            kandidat1.BrojGlasova = 3;
+            kandidat2.BrojGlasova = 1;
+            kandidat3.BrojGlasova = 0;
+            kandidat4.BrojGlasova = 1;
+
+            stranka1.Kandidati = new List<Kandidat> { kandidat1, kandidat2 };
+            stranka2.Kandidati = new List<Kandidat> { kandidat3, kandidat4 };
+            stranka1.BrojGlasova = 4;
+            stranka2.BrojGlasova = 1;
+
+            List<Stranka> stranke = new List<Stranka> { stranka1, stranka2 };
+
+            List<Glasac> glasaci = new List<Glasac>{
+               new Glasac("Dino", "Dinic", "adresa1", new DateTime(1988, 12, 4), "111E222", "0412988000000"),
+               new Glasac("Anela", "Anic", "adresa2", new DateTime(1990, 4, 2), "123E222", "0204990111111"),
+               new Glasac("Sabina", "Sabic", "adresa3", new DateTime(1979, 2, 8), "333E222", "0802979333333"),
+               new Glasac("Dina", "Dinic", "adresa4", new DateTime(1988, 12, 4), "111E333", "0412988000000"),
+               new Glasac("Amela", "Anic", "adresa5", new DateTime(1990, 4, 2), "123E444", "0204990111110"),
+               new Glasac("Sanina", "Sabic", "adresa6", new DateTime(1979, 2, 8), "333E555", "0802979333330")
+           };
+            glasaci[0].Glasao = true; glasaci[1].Glasao = true; glasaci[2].Glasao = true; glasaci[3].Glasao = true; glasaci[4].Glasao = true;
+
+            Izbori izbori = new Izbori(stranke, null, glasaci);
 
             izbori.izracunajProcenteGlasovaZaKandidate();
-            Assert.AreEqual(kandidat1_1.ProcenatGlasova, 50);
-            Assert.AreEqual(kandidat1_2.ProcenatGlasova, 50);
-            Assert.AreEqual(kandidat2_1.ProcenatGlasova, 100);
+            Assert.AreEqual(kandidat1.ProcenatGlasova, 75);
+            Assert.AreEqual(kandidat2.ProcenatGlasova, 25);
+            Assert.AreEqual(kandidat3.ProcenatGlasova, 0);
+            Assert.AreEqual(kandidat4.ProcenatGlasova, 100);
         }
 
         [TestMethod]
         public void TestUkupnogBrojaGlasova()
         {
-            kandidat1_1.BrojGlasova = 100;
-            kandidat1_2.BrojGlasova = 250;
-            kandidat2_1.BrojGlasova = 330;
-            kandidat2_2.BrojGlasova = 450;
+            Stranka stranka1 = new Stranka("SDA");
+            Stranka stranka2 = new Stranka("SDP");
+            Kandidat kandidat1 = new Kandidat("Elma", "Elmic", "adresa4", new DateTime(1990, 5, 3), "111J967", "0305990000000", stranka1, true);
+            Kandidat kandidat2 = new Kandidat("Husein", "Husic", "adresa5", new DateTime(1997, 6, 23), "345K907", "2306997000000", stranka1, false);
+            Kandidat kandidat3 = new Kandidat("Bakir", "Semic", "adresa6", new DateTime(1990, 5, 3), "111J967", "0305990000000", stranka2, true);
+            Kandidat kandidat4 = new Kandidat("Selma", "Suljic", "adresa7", new DateTime(1991, 1, 3), "111J967", "0301991000000", stranka2, false);
 
-            Assert.AreEqual(stranka1.BrojGlasova, 350);
-            Assert.AreEqual(stranka2.BrojGlasova, 780);
+            stranka1.Kandidati = new List<Kandidat> { kandidat1, kandidat2 };
+            stranka2.Kandidati = new List<Kandidat> { kandidat3, kandidat4 };
+
+            List<Stranka> stranke = new List<Stranka> { stranka1, stranka2 };
+
+            List<Glasac> glasaci = new List<Glasac>{
+               new Glasac("Dino", "Dinic", "adresa1", new DateTime(1988, 12, 4), "111E222", "0412988000000"),
+               new Glasac("Anela", "Anic", "adresa2", new DateTime(1990, 4, 2), "123E222", "0204990111111"),
+               new Glasac("Sabina", "Sabic", "adresa3", new DateTime(1979, 2, 8), "333E222", "0802979333333"),
+               new Glasac("Dina", "Dinic", "adresa4", new DateTime(1988, 12, 4), "111E333", "0412988000000"),
+               new Glasac("Amela", "Anic", "adresa5", new DateTime(1990, 4, 2), "123E444", "0204990111110"),
+               new Glasac("Sanina", "Sabic", "adresa6", new DateTime(1979, 2, 8), "333E555", "0802979333330")
+           };
+            glasaci[0].Glasao = true; glasaci[1].Glasao = true; glasaci[2].Glasao = true; glasaci[3].Glasao = true; glasaci[4].Glasao = true; glasaci[5].Glasao = true;
+
+            glasaci[0].glasajZa(kandidat1);
+            glasaci[1].glasajZa(kandidat1);
+            glasaci[2].glasajZa(kandidat2);
+            glasaci[3].glasajZa(kandidat3);
+            glasaci[4].glasajZa(kandidat3);
+            glasaci[5].glasajZa(kandidat1);
+
+
+            Izbori izbori = new Izbori(stranke, null, glasaci);
+
+            Assert.AreEqual(stranka1.BrojGlasova, 4);
+            Assert.AreEqual(stranka2.BrojGlasova, 2);
         }
 
 
         [TestMethod]
         public void TestProcentaGlasovaZaStranku()
         {
-            izbori.BrojIzlazaka = 1000;
-            stranka1.BrojGlasova = 200;
-            stranka2.BrojGlasova = 500;
+            Stranka stranka1 = new Stranka("SDA");
+            Stranka stranka2 = new Stranka("SDP");
+            Kandidat kandidat1 = new Kandidat("Elma", "Elmic", "adresa4", new DateTime(1990, 5, 3), "111J967", "0305990000000", stranka1, true);
+            Kandidat kandidat2 = new Kandidat("Husein", "Husic", "adresa5", new DateTime(1997, 6, 23), "345K907", "2306997000000", stranka1, false);
+            Kandidat kandidat3 = new Kandidat("Bakir", "Semic", "adresa6", new DateTime(1990, 5, 3), "111J967", "0305990000000", stranka1, true);
+            Kandidat kandidat4 = new Kandidat("Selma", "Suljic", "adresa7", new DateTime(1991, 1, 3), "111J967", "0301991000000", stranka2, false);
 
+            kandidat1.BrojGlasova = 3;
+            kandidat2.BrojGlasova = 1;
+            kandidat3.BrojGlasova = 0;
+            kandidat4.BrojGlasova = 1;
+
+            stranka1.Kandidati = new List<Kandidat> { kandidat1, kandidat2 };
+            stranka2.Kandidati = new List<Kandidat> { kandidat3, kandidat4 };
+
+            stranka1.BrojGlasova = 4;
+            stranka2.BrojGlasova = 1;
+
+            List<Stranka> stranke = new List<Stranka> { stranka1, stranka2 };
+
+            List<Glasac> glasaci = new List<Glasac>{
+               new Glasac("Dino", "Dinic", "adresa1", new DateTime(1988, 12, 4), "111E222", "0412988000000"),
+               new Glasac("Anela", "Anic", "adresa2", new DateTime(1990, 4, 2), "123E222", "0204990111111"),
+               new Glasac("Sabina", "Sabic", "adresa3", new DateTime(1979, 2, 8), "333E222", "0802979333333"),
+               new Glasac("Dina", "Dinic", "adresa4", new DateTime(1988, 12, 4), "111E333", "0412988000000"),
+               new Glasac("Amela", "Anic", "adresa5", new DateTime(1990, 4, 2), "123E444", "0204990111110"),
+               new Glasac("Sanina", "Sabic", "adresa6", new DateTime(1979, 2, 8), "333E555", "0802979333330")
+           };
+            glasaci[0].Glasao = true; glasaci[1].Glasao = true; glasaci[2].Glasao = true; glasaci[3].Glasao = true; glasaci[4].Glasao = true;
+
+            Izbori izbori = new Izbori(stranke, null, glasaci);
             izbori.izracunajProcenteGlasovaZaStranke();
 
-            Assert.AreEqual(stranka1.ProcenatGlasova, 20);
-            Assert.AreEqual(stranka2.ProcenatGlasova, 50);
+            Assert.AreEqual(stranka1.ProcenatGlasova, 80);
+            Assert.AreEqual(stranka2.ProcenatGlasova, 20);
         }
 
     }

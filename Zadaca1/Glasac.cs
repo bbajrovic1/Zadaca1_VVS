@@ -117,5 +117,11 @@ namespace Zadaca1
 			OdabraniKandidati = null;
 			Glasao = false;
         }
+
+		public void glasajZa(Kandidat kandidat)
+		{
+			kandidat.dodajGlas();
+			kandidat.Stranka.BrojGlasova++;
+		}
     }
 }
