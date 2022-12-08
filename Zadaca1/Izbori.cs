@@ -257,8 +257,8 @@ namespace Zadaca1
 			Stranke[odabirStranke-1].Kandidati[noviKandidat-1].prikaziProsleStranke();
 		}
 
-
-		public void prikaziRezultateZaStranku(Stranka stranka, List<Kandidat> kandidati)
+        //FUNKCIONALNOST 3 - Mirza Hadžić
+        public void prikaziRezultateZaStranku(Stranka stranka, List<Kandidat> kandidati)
 		{
 			Console.WriteLine("Rezultati za stranku: " + stranka.Naziv +  "\nUkupan broj glasova je: " + stranka.BrojGlasova
 				+ "\nPostotak osvojenih glasova je: " + stranka.ProcenatGlasova + "\nBroj osvojenih mandata je: " + kandidati.Count);
@@ -267,6 +267,7 @@ namespace Zadaca1
 			Console.WriteLine("\n");
 
 		}
+		
 		public void prikaziRezultateZaSveStranke()
 		{   List<Kandidat> mandatorni = dajKandidateSaMandatom();
 			if(mandatorni.Count == 0) { 

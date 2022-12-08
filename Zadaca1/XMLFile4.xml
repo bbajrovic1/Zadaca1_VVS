@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<KandidatiGlasaci>
+	<KandidatGlasac>
+		<Ime>Dino</Ime>
+		<Prezime>Dinic</Prezime>
+		<Adresa>adresa1</Adresa>
+		<DatumRodjenja>04/12/1988</DatumRodjenja>
+		<Licna>111E222</Licna>
+		<Maticni>0412988000000</Maticni>
+		<Stranka>SDA</Stranka>
+		<Rukovodstvo>1</Rukovodstvo>
+		<Ime2>Amra</Ime2>
+		<Prezime2>Amric</Prezime2>
+		<Adresa2>adresa12</Adresa2>
+		<DatumRodjenja2>04/12/1990</DatumRodjenja2>
+		<Licna2>111E222</Licna2>
+		<Maticni2>0412990000000</Maticni2>
+	</KandidatGlasac>
+	<KandidatGlasac>
+		<Ime>Anela</Ime>
+		<Prezime>Anic</Prezime>
+		<Adresa>adresa2</Adresa>
+		<DatumRodjenja>02/04/1990</DatumRodjenja>
+		<Licna>123E222</Licna>
+		<Maticni>0204990111111</Maticni>
+		<Stranka>SDP</Stranka>
+		<Rukovodstvo>1</Rukovodstvo>
+		<Ime2>Dino</Ime2>
+		<Prezime2>Dinic</Prezime2>
+		<Adresa2>adresa12</Adresa2>
+		<DatumRodjenja2>04/12/1990</DatumRodjenja2>
+		<Licna2>111E222</Licna2>
+		<Maticni2>0412990000000</Maticni2>
+	</KandidatGlasac>
+</KandidatiGlasaci>
