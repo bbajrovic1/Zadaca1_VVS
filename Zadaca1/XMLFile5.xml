@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Kandidati>
+	<Kandidat>
+		<Ime>Elma</Ime>
+		<Prezime>Elmic</Prezime>
+		<Adresa>adresa4</Adresa>
+		<DatumRodjenja>03/05/1990</DatumRodjenja>
+		<Licna>111J967</Licna>
+		<Maticni>0305990000000</Maticni>
+		<Stranka>SDA</Stranka>
+		<ProsleStranke>
+			
+				<s>
+					<Stranka>SDP|</Stranka>
+					<Od>03/01/2000|</Od>
+					<Do>08/12/2004|</Do>
+				</s>
+				<s>
+					<Stranka>NIP|</Stranka>
+					<Od>03/01/2005|</Od>
+					<Do>08/12/2008</Do>
+				</s>
+			
+		</ProsleStranke>
+	</Kandidat>
+
+
+</Kandidati> 

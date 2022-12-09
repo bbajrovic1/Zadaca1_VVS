@@ -250,12 +250,25 @@ namespace Zadaca1
             }
 				
 		}
-
-		public void prikaziProsleStrankeZaKandidata(int odabirStranke, int noviKandidat)
+		//FUNKCIONALNOST 2 -  Merjem Bećirović
+		public string prikaziProsleStrankeZaKandidata(int odabirStranke, int noviKandidat)
 		{   if (odabirStranke < 1 || odabirStranke > Stranke.Count || noviKandidat < 1 || noviKandidat > Stranke[odabirStranke - 1].Kandidati.Count)
 				throw new Exception("Nevalidan odabir.");
-			Stranke[odabirStranke-1].Kandidati[noviKandidat-1].prikaziProsleStranke();
+			string rez = Stranke[odabirStranke - 1].Kandidati[noviKandidat - 1].prikaziProsleStranke();
+            Console.WriteLine(rez);
+			return rez;
 		}
+
+        public string prikaziProsleStrankeZaNezavisnogKandidata(int noviKandidat)
+        {
+            if (noviKandidat < 1 || noviKandidat > NezavisniKandidati.Count)
+                throw new Exception("Nevalidan odabir.");
+			string rez = NezavisniKandidati[noviKandidat - 1].prikaziProsleStranke();
+            Console.WriteLine(rez);
+			return rez;
+        }
+
+        
 
         //FUNKCIONALNOST 3 - Mirza Hadžić
         public void prikaziRezultateZaStranku(Stranka stranka, List<Kandidat> kandidati)

@@ -25,6 +25,14 @@ namespace Zadaca1
             ProsleStranke = new List<Tuple<Stranka, DateTime, DateTime>>();
             Rukovodstvo = rukovodstvo;
         }
+        public Kandidat(string ime, string prezime, string adresa, DateTime datumRodjenja, string licna, string maticni, Stranka stranka, List<Tuple<Stranka, DateTime, DateTime>> prosleStranke ) : base(ime, prezime, adresa, datumRodjenja, licna, maticni)
+        {
+            Stranka = stranka;
+            ProcenatGlasova = 0;
+            BrojGlasova = 0;
+            ProsleStranke = prosleStranke;
+            Rukovodstvo = false;
+        }
 
         public Kandidat(string ime, string prezime, string adresa, DateTime datumRodjenja, string licna, string maticni) : base(ime, prezime, adresa, datumRodjenja, licna, maticni)
         {
@@ -41,7 +49,7 @@ namespace Zadaca1
         {
             BrojGlasova++;
         }
-        //FUNKCIONALNOST 5 -EMA MEKIC
+        //FUNKCIONALNOST 5 - EMA MEKIC
         public void oduzmiGlas()
         {
             BrojGlasova--;
@@ -53,17 +61,21 @@ namespace Zadaca1
         }
 
         
+        //FUNKCIONALNOST 2 - Merjem Becirovic
 
-        public void prikaziProsleStranke()
+        public string prikaziProsleStranke()
         {
+            
             if (ProsleStranke.Count == 0)
-                Console.WriteLine("Kandidat nije bio ni u jednoj stranci u proslosti.");
-
-            foreach(Tuple<Stranka, DateTime, DateTime> tup in ProsleStranke)
+                return  "Kandidat nije bio ni u jednoj stranci u proslosti.";
+            string rez = "";
+            foreach (Tuple<Stranka, DateTime, DateTime> tup in ProsleStranke)
             {
-                Console.WriteLine("Stranka: " + tup.Item1.Naziv + ", Članstvo od: " + tup.Item2.ToString("dd.MM.yyyy") + ", Članstvo do: " + tup.Item3.ToString("dd.MM.yyyy") + "\n");
+                rez += "Stranka: " + tup.Item1.Naziv + ", Članstvo od: " + tup.Item2.ToString("dd.MM.yyyy") + ", Članstvo do: " + tup.Item3.ToString("dd.MM.yyyy") + "\n";
             }
+            return rez;
         }
+        
 
     }
 }

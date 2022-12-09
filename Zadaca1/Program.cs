@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml;
 
 namespace Zadaca1
 {
@@ -54,6 +55,7 @@ namespace Zadaca1
         
         static void Main(string[] args)
         {
+       
             Izbori izbori = napuni();
 
             int odabir;
@@ -200,7 +202,7 @@ namespace Zadaca1
 
 
 
-
+            
         }
     }
 }
