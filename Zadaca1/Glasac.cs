@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Zadaca1
 {
-	public class Glasac
+	public class Glasac : IProvjera
 	{
       
         public string Ime { get; set; }
@@ -27,8 +27,15 @@ namespace Zadaca1
 			OdabranaStranka = 0;
 			OdabraniKandidati = new List<int>();
 		}
+        public bool VjerodostojnostGlasaca(IProvjera sigurnosnaProvjera)
+        {
+            if (sigurnosnaProvjera.DaLiJeVecGlasao(ID))
+                throw new Exception("Glasač je već izvršio glasanje!");
+            return true;
+        }
 
-		private bool validiraj(string ime, string prezime, string adresa, DateTime datumRodjenja, string licna, string maticni)
+
+        private bool validiraj(string ime, string prezime, string adresa, DateTime datumRodjenja, string licna, string maticni)
 		{
 			//FUNKCIONALNOST PISALA STEFANI KECMAN
 			int brojSlovaIme = ime.ToCharArray().Count(c => Char.IsLetter(c));
@@ -123,5 +130,11 @@ namespace Zadaca1
 			kandidat.dodajGlas();
 			kandidat.Stranka.BrojGlasova++;
 		}
-    }
+
+		bool IProvjera.DaLiJeVecGlasao(string IDBroj)
+		{
+			return String.Equals(ID, IDBroj) && Glasao == true;
+
+        }
+	}
 }
