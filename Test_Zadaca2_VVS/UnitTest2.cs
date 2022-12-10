@@ -99,10 +99,10 @@ namespace Test_Zadaca2_VVS
             Assert.AreEqual("Stranka: DF, Članstvo od: 01.03.2010, Članstvo do: 02.04.2012\n", rez);
 
         }
+        [TestMethod]
         public void prikaziProsleStrankeZaKandidata_nemaProslih_vracaPorukuDaNemaProslih()
         {
             string rez = izbori.prikaziProsleStrankeZaKandidata(1, 2);
-            Assert.IsTrue(kandidat1_1.ProsleStranke.Count == 0);
             Assert.AreEqual("Kandidat nije bio ni u jednoj stranci u proslosti.", rez);
 
         }

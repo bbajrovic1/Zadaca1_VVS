@@ -7,7 +7,7 @@ using Zadaca1;
 namespace Test_Zadaca2_VVS
 {
     [TestClass]
-    public class UnitTest3
+    public class UnitTest3 //testirao Mirza Hadzic
     {
 
         [TestMethod]
