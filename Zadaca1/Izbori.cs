@@ -35,17 +35,20 @@ namespace Zadaca1
 
 
 		public void glasajZaKandidateIzStranke(string id, int brojStranke, List<int> odabraniKandidati)
-		{  
-			if (brojStranke > 0 && brojStranke <= Stranke.Count)
+		{
+			int brStranaka = Stranke.Count;
+			if (brojStranke > 0 && brojStranke <= brStranaka && brStranaka > 0)
 			{
-				Stranke[brojStranke - 1].dodajGlasSamoStranci();
+				Stranka trenutnaStranka = Stranke[brojStranke - 1];
+				trenutnaStranka.dodajGlasSamoStranci();
 
 				foreach (int i in odabraniKandidati)
-				{   if(i > 0 && i <= Stranke[brojStranke - 1].Kandidati.Count)
-					Stranke[brojStranke - 1].Kandidati[i - 1].dodajGlas(); 
+				{   if(i > 0 && i <= trenutnaStranka.Kandidati.Count)
+					trenutnaStranka.Kandidati[i - 1].dodajGlas(); 
 				}
-				dajGlasacaPodIDem(id).dodajStranku(brojStranke);
-				dajGlasacaPodIDem(id).dodajKandidate(odabraniKandidati);
+				Glasac glasac = dajGlasacaPodIDem(id);
+				glasac.dodajStranku(brojStranke);
+				glasac.dodajKandidate(odabraniKandidati);
 			}
 		}
 
