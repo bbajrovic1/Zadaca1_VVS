@@ -308,17 +308,20 @@ namespace Zadaca1
 		public void resetujGlasoveZaGlasaca(string id)
         {
 			Glasac glasac = dajGlasacaPodIDem(id);
-			if(glasac.OdabranaStranka != 0 && glasac.OdabraniKandidati == null)
+			int odabranaStranka = glasac.OdabranaStranka;
+			List<int> odabraniKandidati = glasac.OdabraniKandidati;
+
+            if (odabranaStranka != 0 && odabraniKandidati == null)
             {
-				Stranke[glasac.OdabranaStranka - 1].OduzmiGlasStranciISvimKandidatima();
+				Stranke[odabranaStranka - 1].OduzmiGlasStranciISvimKandidatima();
 			}
-			else if(glasac.OdabranaStranka != 0 && glasac.OdabraniKandidati != null)
+			else if(odabranaStranka != 0 && odabraniKandidati != null)
             {
-				oduzmiGlasoveZaKandidateIzStranke(glasac.OdabranaStranka, glasac.OdabraniKandidati);
+				oduzmiGlasoveZaKandidateIzStranke(odabranaStranka, odabraniKandidati);
             }
-			else if(glasac.OdabranaStranka == 0 && glasac.OdabraniKandidati != null)
+			else if(odabranaStranka == 0 && odabraniKandidati != null)
             {
-                oduzmiGlasZaNezavisnog(glasac.OdabraniKandidati[0]);
+                oduzmiGlasZaNezavisnog(odabraniKandidati[0]);
             }
 
 
