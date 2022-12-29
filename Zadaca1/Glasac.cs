@@ -45,17 +45,25 @@ namespace Zadaca1
 
 		public bool validirajLicnu(string licna)
         {
-			for (int i = 0; i < 3; i++)
-			{
-				if (!(licna[i] >= '0' && licna[i] <= '9')) return false;
-			}
-			if (licna[3] != 'E' && licna[3] != 'J' && licna[3] != 'K' && licna[3] != 'M' && licna[3] != 'T') return false;
+			if(licna.Length != 7)
+            {
+				return false;
+            }
+            else
+            {
+				for (int i = 0; i < 3; i++)
+				{
+					if (!(licna[i] >= '0' && licna[i] <= '9')) return false;
+				}
+				if (licna[3] != 'E' && licna[3] != 'J' && licna[3] != 'K' && licna[3] != 'M' && licna[3] != 'T') return false;
 
-			for (int i = 4; i < 7; i++)
-			{
-				if (!(licna[i] >= '0' && licna[i] <= '9')) return false;
+				for (int i = 4; i < 7; i++)
+				{
+					if (!(licna[i] >= '0' && licna[i] <= '9')) return false;
+				}
+				return true;
 			}
-			return true;
+			
 		}
 
 
@@ -77,12 +85,11 @@ namespace Zadaca1
 				return false;
 
 
-            DateTime datum18 = DateTime.Now.AddYears(-18);
-			if (datumRodjenja > DateTime.Now || datumRodjenja > datum18) 
+			if (datumRodjenja > DateTime.Now)
 				return false;
-			
-			if (licna.Length!=7)
+			else if (datumRodjenja > DateTime.Now.AddYears(-18))
 				return false;
+
 
 			//proci petljom i provjeriti karaktere licne
 
