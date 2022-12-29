@@ -36,10 +36,12 @@ namespace Zadaca1
 
 		public bool validirajString(string s)
         {
-			for (int i = 0; i < s.Length; i++)
-			{
-				if (!((s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z') || s[i] == '-')) return false;
-			}
+            for (int i = 0; i+2 < s.Length; i+=3)
+            {
+                if (!((s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z') || s[i] == '-')) return false;
+                if (!((s[i+1] >= 'a' && s[i+1] <= 'z') || (s[i + 1] >= 'A' && s[i + 1] <= 'Z') || s[i + 1] == '-')) return false;
+                if (!((s[i + 2] >= 'a' && s[i + 2] <= 'z') || (s[i + 2] >= 'A' && s[i + 2] <= 'Z') || s[i + 2] == '-')) return false;
+            }
 			return true;
         }
 
@@ -103,8 +105,15 @@ namespace Zadaca1
 			string mjesec = datumRodjenja.Month.ToString();
 			if(mjesec.Length == 1) mjesec = "0" + mjesec;
 
-			if (maticni.Length != 13 || maticni.Substring(0, 2) != dan || maticni.Substring(2, 2) != mjesec 
-				|| maticni.Substring(4, 3) != datumRodjenja.Year.ToString().Substring(1, 3))
+			int duzinaMaticnog = maticni.Length;
+			string maticniDan = maticni.Substring(0, 2);
+			string maticniMjesec = maticni.Substring(2, 2);
+			string maticniGodina = maticni.Substring(4, 3);
+			string datumRodjenjaGodina = datumRodjenja.Year.ToString().Substring(1, 3);
+
+
+            if (duzinaMaticnog != 13 || maticniDan != dan ||maticniMjesec != mjesec 
+				|| maticniGodina != datumRodjenjaGodina)
 				return false;
 
 			return true;
